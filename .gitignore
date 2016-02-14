@@ -1,0 +1,12 @@
+
+# IDEs
+nbproject
+.idea
+
+# PACKAGE MANAGER STUFF:
+/node_modules
+/bower_components
+
+# GENERATED CONTENT:
+/build/*
+!/build/PLACEHOLDER_FOR_GIT.txt

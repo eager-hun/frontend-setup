@@ -1,0 +1,29 @@
+
+/**
+ * NOTE:
+ * I have put such declarations in the front that I expect autoprefixer to
+ * expand with vendor-prefixes: this way I can test sourcemaps more thoroughly.
+ */
+
+// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+.some-flexbox {
+  display: flex;
+  justify-content: space-between;
+
+  & > .flex-item {
+    background: teal;
+    color: white;
+    flex: 0 1 auto;
+    padding: $global-padding;
+    width: 20%;
+  }
+}
+
+.has-vertical-space {
+  padding-top: $global-padding*2;
+  padding-bottom: $global-padding*2;
+}
+
+.page__title {
+  @include italicize();
+}

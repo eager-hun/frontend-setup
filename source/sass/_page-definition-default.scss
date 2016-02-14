@@ -1,0 +1,10 @@
+
+body {
+  border-right: $global-padding solid $primary-color;
+}
+
+header,
+.main-content {
+  padding: $global-padding*2;
+}
+
