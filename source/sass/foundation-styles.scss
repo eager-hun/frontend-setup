@@ -23,9 +23,13 @@
  * The include paths seen below will work because we have
  *
  * @code
- *   includePaths: [
- *     bowerLibsSource + '/foundation-sites/scss'
- *   ]
+ *
+ *   var sassOpts = {
+ *     includePaths: [
+ *       internalBowerLibsSource + '/foundation-sites/scss'
+ *     ]
+ *   };
+ *
  * @endcode
  *
  * as a gulp-sass (in effect, a node-sass) option in gulpfile.js.

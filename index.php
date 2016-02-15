@@ -17,8 +17,6 @@ $js_location         = $base_path . '/build/js';
 $scripts = [
   'libs.min.js',
   'custom.min.js',
-//  'custom-script-1.js',
-//  'custom-script-2.js',
 ];
 
 function script_tags($scripts, $js_location) {

@@ -70,14 +70,23 @@ const internalJsDestination     = 'build/js';
 const internalBowerLibsSource   = 'bower_components';
 const internalFurtherLibsSource = 'source/libs';
 
-// Filenames.
+// Output filenames.
 const jsLibsBundle   = 'libs'; // Base of the filename.
 const jsCustomBundle = 'custom'; // Base of the filename.
 
-// Optional watching / reloading.
-var reloadOnFileChange = {
-  html: true,
-  php: true
+// Opts.
+var buildOpts = {
+  projectLocalDomain: 'http://YOURVIRTUALHOSTNAME' + externalPathToGulpfile,
+  // Should browsers be reloaded when files with these extensions get changed?
+  reloadOn: {
+    html: true,
+    php: true
+  },
+  // Cleaning deletes earlier instances of built files before writing new ones.
+  cleaning: {
+    enabled: true,
+    verbose: true
+  }
 };
 
 // -----------------------------------------------------------------------------
@@ -91,7 +100,7 @@ var bowerJsLibs = [
 // -----------------------------------------------------------------------------
 // Foundation js components.
 
-const internalFoundationJsSource = internalBowerLibsSource + '/foundation-sites/js';
+var internalFoundationJsSource = internalBowerLibsSource + '/foundation-sites/js';
 
 // Provide only the filenames.
 var foundationJsFiles = [
@@ -113,13 +122,13 @@ var furtherJsLibs = [];
 // -----------------------------------------------------------------------------
 // Plugin options generally.
 
-var uglifyOptions = {
-  'mangle': false
+var uglifyOpts = {
+  mangle: false
 };
 
 // Note that options from https://github.com/sass/node-sass/blob/master/README.md
 // may also apply.
-var sassOptions = {
+var sassOpts = {
   // See https://web-design-weekly.com/2014/06/15/different-sass-output-styles/
   // nested || expanded || compact || compressed
   outputStyle: 'expanded',
@@ -132,17 +141,18 @@ var sassOptions = {
 // https://github.com/ai/browserslist#queries
 var autoprefixerOpts = {
   // Foundation 6 recommendation: http://foundation.zurb.com/sites/docs/sass.html
-  'browsers': ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3'],
-  'flexbox': 'no-2009',
-  'cascade': true
+  browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3'],
+  flexbox: 'no-2009',
+  cascade: true
 };
 
-var cssSourcemapsOpts = {
-  sourceMappingURLPrefix: externalPathToGulpfile + '/' + internalCssDestination
-};
-
-var jsSourcemapsOpts = {
-  sourceMappingURLPrefix: externalPathToGulpfile + '/' + internalJsDestination
+var sourcemapsOpts = {
+  css: {
+    sourceMappingURLPrefix: externalPathToGulpfile + '/' + internalCssDestination
+  },
+  js: {
+    sourceMappingURLPrefix: externalPathToGulpfile + '/' + internalJsDestination
+  }
 };
 
 
@@ -152,12 +162,7 @@ var jsSourcemapsOpts = {
 // -----------------------------------------------------------------------------
 // CLEANING DESTINATIONS.
 
-var cleaningOpts = {
-  enabled: true,
-  verbose: true
-};
-
-var delOptsForCleaningTask = {dryRun: false};
+var delOptsForCleaningTask = {dryRun: false}; // For build script dev.
 
 var announceCleaning = function announceCleaning(paths) {
   if (paths.length > 0) {
@@ -165,7 +170,7 @@ var announceCleaning = function announceCleaning(paths) {
       console.log('Files and folders that would be deleted:');
       console.log(paths.join('\n'));
     }
-    else if (cleaningOpts.verbose) {
+    else if (buildOpts.cleaning.verbose) {
       console.log('Deleted files and folders:');
       console.log(paths.join('\n'));
     }
@@ -173,14 +178,14 @@ var announceCleaning = function announceCleaning(paths) {
 };
 
 gulp.task('clean-css', function () {
-  if (cleaningOpts.enabled) {
+  if (buildOpts.cleaning.enabled) {
     del([internalCssDestination + '/*'], delOptsForCleaningTask)
       .then(announceCleaning);
   }
 });
 
 gulp.task('clean-js-libs', function () {
-  if (cleaningOpts.enabled) {
+  if (buildOpts.cleaning.enabled) {
     var globs = [
       internalJsDestination + '/' + jsLibsBundle + '.js',
       internalJsDestination + '/' + jsLibsBundle + '.min.js',
@@ -193,7 +198,7 @@ gulp.task('clean-js-libs', function () {
 });
 
 gulp.task('clean-custom-js', function () {
-  if (cleaningOpts.enabled) {
+  if (buildOpts.cleaning.enabled) {
     var globs = [
       internalJsDestination + '/' + jsCustomBundle + '.js',
       internalJsDestination + '/' + jsCustomBundle + '.min.js',
@@ -211,10 +216,10 @@ gulp.task('clean-custom-js', function () {
 gulp.task('compile-css', ['clean-css'], function () {
   return gulp.src(internalCssSource + '/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass(sassOptions)
+    .pipe(sass(sassOpts)
       .on('error', sass.logError))
     .pipe(autoprefixer(autoprefixerOpts))
-    .pipe(sourcemaps.write('./sourcemaps', cssSourcemapsOpts))
+    .pipe(sourcemaps.write('./sourcemaps', sourcemapsOpts.css))
     .pipe(gulp.dest(internalCssDestination))
     .pipe(browsersync.stream({match: '**/*.css'}));
 });
@@ -252,8 +257,8 @@ gulp.task('compile-js-libs', ['clean-js-libs'], function() {
     .pipe(concat(jsLibsBundle + '.js', {newLine: "\n;"}))
     .pipe(gulp.dest(internalJsDestination))
     .pipe(rename({suffix: '.min'}))
-    .pipe(uglify(uglifyOptions))
-    .pipe(sourcemaps.write('./sourcemaps', jsSourcemapsOpts))
+    .pipe(uglify(uglifyOpts))
+    .pipe(sourcemaps.write('./sourcemaps', sourcemapsOpts.js))
     .pipe(gulp.dest(internalJsDestination));
 });
 
@@ -262,7 +267,7 @@ gulp.task('compile-js-libs', ['clean-js-libs'], function() {
 
 gulp.task('compile-custom-js', ['clean-custom-js'], function() {
 
-  var customJsSourcemapsOpts = jsSourcemapsOpts;
+  var customJsSourcemapsOpts = sourcemapsOpts.js;
   customJsSourcemapsOpts.includeContent = false;
   customJsSourcemapsOpts.sourceRoot = externalPathToGulpfile + '/' + internalCustomJsSource;
 
@@ -285,7 +290,7 @@ gulp.task('compile-custom-js', ['clean-custom-js'], function() {
     .pipe(concat(jsCustomBundle + '.js', {newLine: "\n;"}))
     .pipe(gulp.dest(internalJsDestination))
     .pipe(rename({suffix: '.min'}))
-    .pipe(uglify(uglifyOptions))
+    .pipe(uglify(uglifyOpts))
     .pipe(sourcemaps.write('./sourcemaps', customJsSourcemapsOpts))
     .pipe(gulp.dest(internalJsDestination))
     .pipe(browsersync.stream({match: '**/*.js'}));
@@ -295,15 +300,13 @@ gulp.task('compile-custom-js', ['clean-custom-js'], function() {
 // WATCHING AND BROWSERSYNCING.
 // See https://www.browsersync.io/docs/gulp/
 
-var projectLocalDomain = 'alpha/frontend-setup';
-
 var watcherAnnounce = function watcherAnnounce(event) {
   console.log(event.path + ' <<== File was ' + event.type + '; running tasks:');
 };
 
 gulp.task('serve', ['compile-css', 'compile-custom-js', 'compile-js-libs'], function() {
   browsersync.init({
-    proxy: projectLocalDomain
+    proxy: buildOpts.projectLocalDomain
   });
 
   // See https://www.browsersync.io/docs/gulp/#gulp-reload
@@ -316,7 +319,7 @@ gulp.task('serve', ['compile-css', 'compile-custom-js', 'compile-js-libs'], func
   gulp.watch([internalCustomJsSource + '/*.js'], ['reload-at-custom-js'])
     .on('change', watcherAnnounce);
 
-  if (reloadOnFileChange.html) {
+  if (buildOpts.reloadOn.html) {
     gulp.watch('**/*.html')
       .on('change', function(event) {
         watcherAnnounce(event);
@@ -324,7 +327,7 @@ gulp.task('serve', ['compile-css', 'compile-custom-js', 'compile-js-libs'], func
       });
   }
 
-  if (reloadOnFileChange.php) {
+  if (buildOpts.reloadOn.php) {
     gulp.watch('**/*.php')
       .on('change', function(event) {
         watcherAnnounce(event);
