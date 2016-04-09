@@ -20,9 +20,9 @@ http://www.chenhuijing.com/blog/drupal-101-theming-with-gulp/
 
 On concatenating files:
 
-// Gulp minify multiple js files to one
+Gulp minify multiple js files to one
 http://stackoverflow.com/a/26719941
-// Using Gulp to Concatenate and Uglify files
+Using Gulp to Concatenate and Uglify files
 http://stackoverflow.com/a/24597914
 
 Complex example might worth examining:
@@ -34,7 +34,7 @@ https://github.com/floridoo/gulp-sourcemaps/wiki/Plugins-with-gulp-sourcemaps-su
 When it comes to Browserify:
 https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md
 
-*/
+ */
 
 
 // #############################################################################
@@ -58,119 +58,131 @@ const browsersync  = require('browser-sync').create();
 // #############################################################################
 // Project setup.
 
-// Locations.
-const externalPathToGulpfile    = '/frontend-setup';
+// -----------------------------------------------------------------------------
+// Paths.
 
-const internalCssSource         = 'source/sass';
-const internalCssDestination    = 'build/css';
-
-const internalCustomJsSource    = 'source/js';
-const internalJsDestination     = 'build/js';
-
-const internalBowerLibsSource   = 'bower_components';
-const internalFurtherLibsSource = 'source/libs';
-
-// Output filenames.
-const jsLibsBundle   = 'libs'; // Base of the filename.
-const jsCustomBundle = 'custom'; // Base of the filename.
-
-// Opts.
-var buildOpts = {
-  projectLocalDomain: 'http://YOURVIRTUALHOSTNAME' + externalPathToGulpfile,
-  // Should browsers be reloaded when files with these extensions get changed?
-  reloadOn: {
-    html: true,
-    php: true
+var paths = {
+  web: {
+    toGulpfile: '/frontend-setup'
   },
+  source: {
+    bower:       'bower_components',
+    customLibs:  'source/customLibs',
+    customJs:    'source/js',
+    css:         'source/sass'
+  },
+  dest: {
+    css: 'build/css',
+    js:  'build/js'
+  }
+};
+
+// -----------------------------------------------------------------------------
+// Options.
+
+var options = {
   // Cleaning deletes earlier instances of built files before writing new ones.
   cleaning: {
     enabled: true,
-    verbose: true
-  }
-};
-
-// -----------------------------------------------------------------------------
-// Bower-managed libraries - except for Foundation!
-
-// Provide full internal paths along with the filenames.
-var bowerJsLibs = [
-  internalBowerLibsSource + '/jquery/dist/jquery.js'
-];
-
-// -----------------------------------------------------------------------------
-// Foundation js components.
-
-var internalFoundationJsSource = internalBowerLibsSource + '/foundation-sites/js';
-
-// Provide only the filenames.
-var foundationJsFiles = [
-  'foundation.core.js',
-  'foundation.dropdown.js',
-  'foundation.util.mediaQuery.js',
-  'foundation.util.keyboard.js',
-  'foundation.util.box.js',
-  'foundation.util.triggers.js'
-];
-
-// -----------------------------------------------------------------------------
-// Further, non-bower-managed js libs.
-
-// Provide full internal paths along with the filenames.
-// Please utilize the internalFurtherLibsSource variable in path defs.
-var furtherJsLibs = [];
-
-// -----------------------------------------------------------------------------
-// Plugin options generally.
-
-var uglifyOpts = {
-  mangle: false
-};
-
-// Note that options from https://github.com/sass/node-sass/blob/master/README.md
-// may also apply.
-var sassOpts = {
-  // See https://web-design-weekly.com/2014/06/15/different-sass-output-styles/
-  // nested || expanded || compact || compressed
-  outputStyle: 'expanded',
-  includePaths: [
-    internalBowerLibsSource + '/foundation-sites/scss'
-  ]
-};
-
-// https://github.com/postcss/autoprefixer#options
-// https://github.com/ai/browserslist#queries
-var autoprefixerOpts = {
-  // Foundation 6 recommendation: http://foundation.zurb.com/sites/docs/sass.html
-  browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3'],
-  flexbox: 'no-2009',
-  cascade: true
-};
-
-var sourcemapsOpts = {
-  css: {
-    sourceMappingURLPrefix: externalPathToGulpfile + '/' + internalCssDestination
+    verbose: true,
+    delOpts: {
+      dryrun: false
+    }
   },
-  js: {
-    sourceMappingURLPrefix: externalPathToGulpfile + '/' + internalJsDestination
+  sass: {
+    // Note that options from
+    // https://github.com/sass/node-sass/blob/master/README.md may also apply.
+    // See https://web-design-weekly.com/2014/06/15/different-sass-output-styles/
+    // nested || expanded || compact || compressed
+    outputStyle: 'expanded',
+    includePaths: [
+      paths.source.bower + '/foundation-sites/scss'
+    ]
+  },
+  autoprefixer: {
+    // https://github.com/postcss/autoprefixer#options
+    // https://github.com/ai/browserslist#queries
+    // Foundation 6 recommendation: http://foundation.zurb.com/sites/docs/sass.html
+    browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3'],
+    flexbox: 'no-2009',
+    cascade: true
+  },
+  sourcemaps: {
+    css: {
+      'sourceMappingURLPrefix': paths.web.toGulpfile + '/' + paths.dest.css
+    },
+    js: {
+      'sourceMappingURLPrefix': paths.web.toGulpfile + '/' + paths.dest.js
+    }
+  },
+  uglify: {
+    mangle: false
+  },
+  browsersync: {
+    proxy: 'http://alpha' + paths.web.toGulpfile,
+    // browser: 'google chrome', // https://www.browsersync.io/docs/options/#option-browser
+    online: false,
+    notify: false
+  },
+  reloadOn: {
+    html: true,
+    php: true,
+    svg: true
   }
 };
+
+// #############################################################################
+// Js bundle definitions.
+
+var jsBundles = {
+  libs: {
+    filename: 'libs'
+  },
+  framework: {
+    filename: 'foundation'
+  },
+  custom: {
+    filename: 'custom'
+  }
+};
+
+// -----------------------------------------------------------------------------
+// Libraries.
+// Provide full paths (relative to gulpfile.js) along with the filenames.
+
+jsBundles.libs.files = [
+  paths.source.bower + '/jquery/dist/jquery.js'
+];
+
+// -----------------------------------------------------------------------------
+// Framework JS files.
+// Provide full paths (relative to gulpfile.js) along with the filenames.
+
+paths.source.frameworkJs = paths.source.bower + '/foundation-sites/js';
+
+jsBundles.framework.files = [
+  paths.source.frameworkJs + '/foundation.core.js',
+  paths.source.frameworkJs + '/foundation.dropdown.js',
+  paths.source.frameworkJs + '/foundation.util.mediaQuery.js',
+  paths.source.frameworkJs + '/foundation.util.keyboard.js',
+  paths.source.frameworkJs + '/foundation.util.box.js',
+  paths.source.frameworkJs + '/foundation.util.triggers.js'
+];
 
 
 // #############################################################################
-// Task defs and options.
+// Tasks and their helpers.
 
 // -----------------------------------------------------------------------------
-// CLEANING DESTINATIONS.
-
-var delOptsForCleaningTask = {dryRun: false}; // For build script dev.
+// CLEANING UP old files before saving new ones.
 
 var announceCleaning = function announceCleaning(paths) {
   if (paths.length > 0) {
-    if (delOptsForCleaningTask.dryRun) {
+    if (options.cleaning.delOpts.dryrun) {
       console.log('Files and folders that would be deleted:');
       console.log(paths.join('\n'));
     }
-    else if (buildOpts.cleaning.verbose) {
+    else if (options.cleaning.verbose) {
       console.log('Deleted files and folders:');
       console.log(paths.join('\n'));
     }
@@ -178,34 +190,47 @@ var announceCleaning = function announceCleaning(paths) {
 };
 
 gulp.task('clean-css', function () {
-  if (buildOpts.cleaning.enabled) {
-    del([internalCssDestination + '/*'], delOptsForCleaningTask)
+  if (options.cleaning.enabled) {
+    del([paths.dest.css + '/*'], options.cleaning.delOpts)
       .then(announceCleaning);
   }
 });
 
 gulp.task('clean-js-libs', function () {
-  if (buildOpts.cleaning.enabled) {
+  if (options.cleaning.enabled) {
     var globs = [
-      internalJsDestination + '/' + jsLibsBundle + '.js',
-      internalJsDestination + '/' + jsLibsBundle + '.min.js',
-      internalJsDestination + '/sourcemaps/' + jsLibsBundle + '.js.map',
-      internalJsDestination + '/sourcemaps/' + jsLibsBundle + '.min.js.map',
+      paths.dest.js + '/' + jsBundles.libs.filename + '.js',
+      paths.dest.js + '/' + jsBundles.libs.filename + '.min.js',
+      paths.dest.js + '/sourcemaps/' + jsBundles.libs.filename + '.js.map',
+      paths.dest.js + '/sourcemaps/' + jsBundles.libs.filename + '.min.js.map'
     ];
-    del(globs, delOptsForCleaningTask)
+    del(globs, options.cleaning.delOpts)
+      .then(announceCleaning);
+  }
+});
+
+gulp.task('clean-framework-js', function () {
+  if (options.cleaning.enabled) {
+    var globs = [
+      paths.dest.js + '/' + jsBundles.framework.filename + '.js',
+      paths.dest.js + '/' + jsBundles.framework.filename + '.min.js',
+      paths.dest.js + '/sourcemaps/' + jsBundles.framework.filename + '.js.map',
+      paths.dest.js + '/sourcemaps/' + jsBundles.framework.filename + '.min.js.map'
+    ];
+    del(globs, options.cleaning.delOpts)
       .then(announceCleaning);
   }
 });
 
 gulp.task('clean-custom-js', function () {
-  if (buildOpts.cleaning.enabled) {
+  if (options.cleaning.enabled) {
     var globs = [
-      internalJsDestination + '/' + jsCustomBundle + '.js',
-      internalJsDestination + '/' + jsCustomBundle + '.min.js',
-      internalJsDestination + '/sourcemaps/' + jsCustomBundle + '.js.map',
-      internalJsDestination + '/sourcemaps/' + jsCustomBundle + '.min.js.map',
+      paths.dest.js + '/' + jsBundles.custom.filename + '.js',
+      paths.dest.js + '/' + jsBundles.custom.filename + '.min.js',
+      paths.dest.js + '/sourcemaps/' + jsBundles.custom.filename + '.js.map',
+      paths.dest.js + '/sourcemaps/' + jsBundles.custom.filename + '.min.js.map'
     ];
-    del(globs, delOptsForCleaningTask)
+    del(globs, options.cleaning.delOpts)
       .then(announceCleaning);
   }
 });
@@ -214,52 +239,49 @@ gulp.task('clean-custom-js', function () {
 // COMPILING CSS.
 
 gulp.task('compile-css', ['clean-css'], function () {
-  return gulp.src(internalCssSource + '/*.scss')
+  return gulp.src(paths.source.css + '/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass(sassOpts)
+    .pipe(sass(options.sass)
       .on('error', sass.logError))
-    .pipe(autoprefixer(autoprefixerOpts))
-    .pipe(sourcemaps.write('./sourcemaps', sourcemapsOpts.css))
-    .pipe(gulp.dest(internalCssDestination))
+    .pipe(autoprefixer(options.autoprefixer))
+    .pipe(sourcemaps.write('./sourcemaps', options.sourcemaps.css))
+    .pipe(gulp.dest(paths.dest.css))
     .pipe(browsersync.stream({match: '**/*.css'}));
 });
 
 // -----------------------------------------------------------------------------
-// COMPILING JS LIBS.
+// COMPILING JS LIBS AND FRAMEWORK JS BUNDLES.
 
-// NOTE: there is no watcher for this, if you add or remove libraries, you need
-// to relaunch gulp (they get compiled upon launching gulp).
+// NOTE: there is no watcher for these, if you add or remove libraries or
+// framework js files, you need to relaunch gulp.
+
+// WARNING: are we guaranteed to get back the components in the concatenated
+// file in the same order they were passed in?
+
+// Related: https://github.com/gulpjs/gulp/issues/687
+// Related: http://stackoverflow.com/questions/28486866/gulp-src-using-sync-globbing
+// Also, using order() here only made things worse.
 
 gulp.task('compile-js-libs', ['clean-js-libs'], function() {
-
-  // WARNING: are we guaranteed to get back the components in the concatenated
-  // file in the same order they were passed in?
-
-  // Related: https://github.com/gulpjs/gulp/issues/687
-  // Related: http://stackoverflow.com/questions/28486866/gulp-src-using-sync-globbing
-  // Also, using order() here only made things worse.
-
-  // TODO: finding it out. (Though currently works as intended.)
-
-  var globs = [];
-  for (var i = 0; i < bowerJsLibs.length; i++) {
-    globs.push(bowerJsLibs[i]);
-  }
-  for (var i = 0; i < foundationJsFiles.length; i++) {
-    globs.push(internalFoundationJsSource + '/' + foundationJsFiles[i]);
-  }
-  for (var i = 0; i < furtherJsLibs.length; i++) {
-    globs.push(furtherJsLibs[i]);
-  }
-
-  return gulp.src(globs)
+  return gulp.src(jsBundles.libs.files)
     .pipe(sourcemaps.init())
-    .pipe(concat(jsLibsBundle + '.js', {newLine: "\n;"}))
-    .pipe(gulp.dest(internalJsDestination))
+    .pipe(concat(jsBundles.libs.filename + '.js', {newLine: "\n;"}))
+    .pipe(gulp.dest(paths.dest.js))
     .pipe(rename({suffix: '.min'}))
-    .pipe(uglify(uglifyOpts))
-    .pipe(sourcemaps.write('./sourcemaps', sourcemapsOpts.js))
-    .pipe(gulp.dest(internalJsDestination));
+    .pipe(uglify(options.uglify))
+    .pipe(sourcemaps.write('./sourcemaps', options.sourcemaps.js))
+    .pipe(gulp.dest(paths.dest.js));
+});
+
+gulp.task('compile-framework-js', ['clean-framework-js'], function() {
+  return gulp.src(jsBundles.framework.files)
+    .pipe(sourcemaps.init())
+    .pipe(concat(jsBundles.framework.filename + '.js', {newLine: "\n;"}))
+    .pipe(gulp.dest(paths.dest.js))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify(options.uglify))
+    .pipe(sourcemaps.write('./sourcemaps', options.sourcemaps.js))
+    .pipe(gulp.dest(paths.dest.js));
 });
 
 // -----------------------------------------------------------------------------
@@ -267,32 +289,28 @@ gulp.task('compile-js-libs', ['clean-js-libs'], function() {
 
 gulp.task('compile-custom-js', ['clean-custom-js'], function() {
 
-  var customJsSourcemapsOpts = sourcemapsOpts.js;
-  customJsSourcemapsOpts.includeContent = false;
-  customJsSourcemapsOpts.sourceRoot = externalPathToGulpfile + '/' + internalCustomJsSource;
-
   // NOTICE: we may need to define custom order of these files, as some of them
   // may depend on another one(s).
 
-  // If we provide only a subset of the existing files for order(), they will
-  // be ordered as such at the beginning of the concatenated file, then the
-  // rest of the files will follow in abc-order.
+  // If we provide only a subset of the existing files for order(), it seems
+  // that they will be ordered as such at the beginning of the concatenated
+  // file, then the rest of the files will follow in abc-order.
   var jsFilesOrder = [
     'custom-script-3.js',
     'custom-script-2.js'
   ];
 
-  return gulp.src(internalCustomJsSource + '/*.js')
+  return gulp.src(paths.source.customJs + '/*.js')
     .pipe(order(jsFilesOrder))
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(sourcemaps.init())
-    .pipe(concat(jsCustomBundle + '.js', {newLine: "\n;"}))
-    .pipe(gulp.dest(internalJsDestination))
+    .pipe(concat(jsBundles.custom.filename + '.js', {newLine: "\n;"}))
+    .pipe(gulp.dest(paths.dest.js))
     .pipe(rename({suffix: '.min'}))
-    .pipe(uglify(uglifyOpts))
-    .pipe(sourcemaps.write('./sourcemaps', customJsSourcemapsOpts))
-    .pipe(gulp.dest(internalJsDestination))
+    .pipe(uglify(options.uglify))
+    .pipe(sourcemaps.write('./sourcemaps', options.sourcemaps.js))
+    .pipe(gulp.dest(paths.dest.js))
     .pipe(browsersync.stream({match: '**/*.js'}));
 });
 
@@ -304,22 +322,24 @@ var watcherAnnounce = function watcherAnnounce(event) {
   console.log(event.path + ' <<== File was ' + event.type + '; running tasks:');
 };
 
-gulp.task('serve', ['compile-css', 'compile-custom-js', 'compile-js-libs'], function() {
-  browsersync.init({
-    proxy: buildOpts.projectLocalDomain
-  });
+// Resource-specific compiler+reloaders.
+gulp.task('reload-at-css', ['compile-css'], browsersync.reload);
+gulp.task('reload-at-custom-js', ['compile-custom-js'], browsersync.reload);
+
+gulp.task('serve', ['compile-css', 'compile-js-libs', 'compile-framework-js', 'compile-custom-js'], function() {
+  browsersync.init(options.browsersync);
 
   // See https://www.browsersync.io/docs/gulp/#gulp-reload
   // + See https://www.browsersync.io/docs/gulp/#gulp-manual-reload
   // + See https://github.com/gulpjs/gulp/blob/master/docs/API.md#user-content-tasks
 
-  gulp.watch([internalCssSource + '/*.scss'], ['reload-at-css'])
+  gulp.watch([paths.source.css + '/*.scss'], ['reload-at-css'])
     .on('change', watcherAnnounce);
 
-  gulp.watch([internalCustomJsSource + '/*.js'], ['reload-at-custom-js'])
+  gulp.watch([paths.source.customJs + '/*.js'], ['reload-at-custom-js'])
     .on('change', watcherAnnounce);
 
-  if (buildOpts.reloadOn.html) {
+  if (options.reloadOn.html) {
     gulp.watch('**/*.html')
       .on('change', function(event) {
         watcherAnnounce(event);
@@ -327,7 +347,7 @@ gulp.task('serve', ['compile-css', 'compile-custom-js', 'compile-js-libs'], func
       });
   }
 
-  if (buildOpts.reloadOn.php) {
+  if (options.reloadOn.php) {
     gulp.watch('**/*.php')
       .on('change', function(event) {
         watcherAnnounce(event);
@@ -335,10 +355,6 @@ gulp.task('serve', ['compile-css', 'compile-custom-js', 'compile-js-libs'], func
       });
   }
 });
-
-// Resource-specific compiler+reloaders.
-gulp.task('reload-at-css', ['compile-css'], browsersync.reload);
-gulp.task('reload-at-custom-js', ['compile-custom-js'], browsersync.reload);
 
 // -----------------------------------------------------------------------------
 // Automatic execution of the default build sequence at the `gulp` command.
@@ -363,3 +379,5 @@ gulp.task('default', ['serve']);
 // In Firefox, Js sourcemap data are not used by the console tab (though in the
 // Debugger tab they are utilized); This is a Firefox issue:
 // https://bugzilla.mozilla.org/show_bug.cgi?id=670002
+
+// Error: EEXIST: file already exists, mkdir '/xxxxxx/build/css/sourcemaps' at Error (native)

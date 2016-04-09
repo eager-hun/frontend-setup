@@ -24,9 +24,9 @@
  *
  * @code
  *
- *   var sassOpts = {
+ *   options.sass = {
  *     includePaths: [
- *       internalBowerLibsSource + '/foundation-sites/scss'
+ *       paths.source.bower + '/foundation-sites/scss'
  *     ]
  *   };
  *

@@ -26,4 +26,6 @@
 
 .page__title {
   @include italicize();
+
+  color: green;
 }
