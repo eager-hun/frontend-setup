@@ -1,31 +1,19 @@
-
 /**
- * NOTE:
- * I have put such declarations in the front that I expect autoprefixer to
- * expand with vendor-prefixes: this way I can test sourcemaps more thoroughly.
+ * @file
+ * Components.
  */
 
-// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-.some-flexbox {
-  display: flex;
-  justify-content: space-between;
+// #############################################################################
+// Dropdowns.
 
-  & > .flex-item {
-    background: teal;
-    color: white;
-    flex: 0 1 auto;
-    padding: $global-padding;
-    width: 20%;
+// Foundation fix - without this, invisible dropdown panes trigger horizontal
+// scrollbars on smaller screens.
+
+.dropdown-pane {
+  width: auto;
+
+  // TODO: do we need spec declarations for tiny / large dropdowns?
+  &.is-open {
+    width: $dropdown-width;
   }
-}
-
-.has-vertical-space {
-  margin-top: $global-padding*4;
-  margin-bottom: $global-padding*4;
-}
-
-.page__title {
-  @include italicize();
-
-  color: green;
 }

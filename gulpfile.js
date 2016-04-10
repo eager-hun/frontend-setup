@@ -66,10 +66,10 @@ var paths = {
     toGulpfile: '/frontend-setup'
   },
   source: {
-    bower:       'bower_components',
-    customLibs:  'source/customLibs',
-    customJs:    'source/js',
-    css:         'source/sass'
+    bower:      'bower_components',
+    customLibs: 'source/customLibs',
+    customJs:   'source/js',
+    css:        'source/sass'
   },
   dest: {
     css: 'build/css',
@@ -84,7 +84,7 @@ var options = {
   // Cleaning deletes earlier instances of built files before writing new ones.
   cleaning: {
     enabled: true,
-    verbose: true,
+    verbose: false,
     delOpts: {
       dryrun: false
     }

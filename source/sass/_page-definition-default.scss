@@ -1,9 +1,17 @@
+/**
+ * @file
+ * Page definition default.
+ */
 
-body {
-  border-right: $global-padding solid $primary-color;
+.page__level {
+  padding-top: $global-margin*3;
+  padding-bottom: $global-margin*3;
 }
-
-header,
-.main-content {
-  padding: $global-padding*2;
+.page__header,
+.page__footer {
+  padding-top: $global-margin*2;
+  padding-bottom: $global-margin*2;
+}
+.header__site-name {
+  font-weight: 700;
 }

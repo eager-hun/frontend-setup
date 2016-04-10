@@ -59,7 +59,7 @@
 // ---------
 
 $global-font-size: 100%;
-$global-width: rem-calc(1200);
+$global-width: rem-calc(1050);
 $global-lineheight: 1.5;
 $primary-color: goldenrod; // #2199e8;
 $secondary-color: #777;
@@ -88,9 +88,9 @@ $global-text-direction: ltr;
 $breakpoints: (
   small: 0,
   medium: 640px,
-  large: 1024px,
-  xlarge: 1200px,
-  xxlarge: 1440px,
+  large: 900px,
+  xlarge: 1010px,
+  xxlarge: 1150px,
 );
 $breakpoint-classes: (small medium large);
 
@@ -98,7 +98,7 @@ $breakpoint-classes: (small medium large);
 // -----------
 
 $grid-row-width: $global-width;
-$grid-column-count: 12;
+$grid-column-count: 24;
 $grid-column-responsive-gutter: (
   small: 20px,
   medium: 30px,
