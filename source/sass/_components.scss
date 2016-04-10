@@ -10,10 +10,13 @@
 // scrollbars on smaller screens.
 
 .dropdown-pane {
-  width: auto;
+  height: 0;
+  overflow: hidden;
+  width: 0;
 
   // TODO: do we need spec declarations for tiny / large dropdowns?
   &.is-open {
+    height: auto;
     width: $dropdown-width;
   }
 }
