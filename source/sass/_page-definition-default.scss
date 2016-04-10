@@ -3,15 +3,28 @@
  * Page definition default.
  */
 
-.page__level {
-  padding-top: $global-margin*3;
-  padding-bottom: $global-margin*3;
-}
+
+
 .page__header,
 .page__footer {
+  @include text-color-invert-zone;
+
   padding-top: $global-margin*2;
   padding-bottom: $global-margin*2;
 }
+.page__header {
+  background: teal;
+}
+.page__footer {
+  background: darkslategray;
+}
+
 .header__site-name {
+  @include override-link-color(white);
+
   font-weight: 700;
+}
+
+.page__title {
+  @include page-title-appearance;
 }

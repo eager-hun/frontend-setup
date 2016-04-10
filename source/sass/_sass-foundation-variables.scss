@@ -59,7 +59,7 @@
 // ---------
 
 $global-font-size: 100%;
-$global-width: rem-calc(1050);
+$global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $primary-color: goldenrod; // #2199e8;
 $secondary-color: #777;
@@ -98,11 +98,11 @@ $breakpoints: (
   narrow-m: 420px,
   narrow-l: 560px,
   wide: 700px,
-  wide-m: 820px,
-  wide-l: 960px,
+  wide-m: 860px,
+  wide-l: 1050px,
   just-to-avoid-foundation-glitch: 9000px
 );
-$breakpoint-classes: (narrow narrow-l wide wide-l);
+$breakpoint-classes: (narrow narrow-l wide wide-m);
 
 // 3. The Grid
 // -----------
@@ -110,8 +110,9 @@ $breakpoint-classes: (narrow narrow-l wide wide-l);
 $grid-row-width: $global-width;
 $grid-column-count: 24;
 $grid-column-responsive-gutter: (
-  narrow: 20px,
-  wide: 30px,
+  // TODO: finding out whether these values are better as pixels.
+  narrow: 1rem,
+  wide: 1rem,
 );
 $grid-column-align-edge: true;
 $block-grid-max: 8;
@@ -125,14 +126,14 @@ $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-sizes: (
   narrow: (
-    'h1': 24,
-    'h2': 20,
-    'h3': 19,
-    'h4': 18,
-    'h5': 17,
-    'h6': 16,
+    'h1': 28,
+    'h2': 22,
+    'h3': 20,
+    'h4': 19,
+    'h5': 18,
+    'h6': 17,
   ),
-  wide: (
+  wide-m: (
     'h1': 48,
     'h2': 40,
     'h3': 31,
@@ -142,12 +143,12 @@ $header-sizes: (
   ),
 );
 $header-color: inherit;
-$header-lineheight: 1.4;
+$header-lineheight: 1.15;
 $header-margin-bottom: 0.5rem;
 $header-text-rendering: optimizeLegibility;
 $small-font-size: 80%;
 $header-small-font-color: $medium-gray;
-$paragraph-lineheight: 1.6;
+$paragraph-lineheight: $global-lineheight*1.1;
 $paragraph-margin-bottom: 1rem;
 $paragraph-text-rendering: optimizeLegibility;
 $code-color: $black;

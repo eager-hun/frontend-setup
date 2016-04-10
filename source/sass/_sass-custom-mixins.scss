@@ -84,9 +84,98 @@
   //          Take that into account when applying this anywhere.
 }
 
+// Passes control of providing whitespace between groups of contents to
+// containing elements (e.g. layouts), by removing possibly disruptive margins
+// from the children.
+@mixin l-fit {
+  & > *:first-child {
+    margin-top: 0;
+  }
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
 
 // #############################################################################
-// Skin.
+// Typography.
+
+@mixin pseudo-heading-base {
+  // These things come straight from
+  // bower_components/foundation-sites/scss/typography/_base.scss.
+  // We might need them to format non-heading elements as headings.
+  font-family: $header-font-family;
+  font-weight: $header-font-weight;
+  font-style: $header-font-style;
+  color: $header-color;
+  text-rendering: $header-text-rendering;
+  margin-top: 0;
+  margin-bottom: $header-margin-bottom;
+  line-height: $header-lineheight;
+
+  small {
+    color: $header-small-font-color;
+    line-height: 0;
+  }
+}
+
+@mixin pseudo-heading($heading) {
+  // Getting the font size for the requested element.
+  // I found the base for this in
+  // bower_components/foundation-sites/scss/typography/_base.scss too.
+  @each $size, $headers in $header-sizes {
+    @include breakpoint($size) {
+      $size-defs: map-get($header-sizes, $size);
+      font-size: rem-calc(map-get($size-defs, $heading));
+    }
+  }
+}
+
+// Offsets text such way that its line-height will not influence how it seems
+// to fit with its surroundings.
+@mixin line-height-fit($line-height, $pos, $correction: 0) {
+  // Take the part of line-height that's above 1, half it (as it is distributed
+  // on the top and the bottom), then add an em unit on it.
+  // The $correction allows for custom adjustments, which might be neccessary,
+  // depending on the characteristics of the actual font being used.
+  $offset: ($line-height - 1)*0.5*(1+$correction);
+  $offset-w-unit: $offset * 1em;
+  margin-#{$pos}: -$offset-w-unit;
+}
+
+@mixin page-title-appearance {
+  @include pseudo-heading-base;
+  @include pseudo-heading(h1);
+
+  margin-top: map-get($grid-column-responsive-gutter, narrow)* 0.5 * -1;
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  @include breakpoint(wide) {
+    @include line-height-fit($header-lineheight, top, 1.75);
+    @include line-height-fit($header-lineheight, bottom, 1.75);
+
+    padding-top: 0;
+  }
+  // These calculations provide whitespace below the page title that is
+  // identical to the whitespace between the page title and the header (the
+  // .page__level's padding).
+  @include breakpoint(wide-m) {
+    padding-bottom: rem-calc(map-get($breakpoints, wide-m)/$grid-column-count) + map-get($grid-column-responsive-gutter, wide);
+  }
+  @include breakpoint(wide-l) {
+    padding-bottom: $global-width/$grid-column-count + map-get($grid-column-responsive-gutter, wide);
+  }
+}
+
+@mixin box-title-appearance {
+  @include pseudo-heading-base;
+  @include pseudo-heading(h4);
+  @include line-height-fit($header-lineheight, top, 1.75);
+}
+
+// #############################################################################
+// Colors.
 
 @mixin override-link-color($color) {
   & {

@@ -1,0 +1,55 @@
+/**
+ * @file
+ * Components - custom ones.
+ */
+
+
+// #############################################################################
+// Boxes.
+
+.box {
+  background: rgba(silver, 0.25);
+  padding: $global-padding*0.5;
+
+  @include breakpoint(wide) {
+    padding: $global-padding;
+  }
+}
+.box__title {
+  @include box-title-appearance;
+
+  margin-bottom: $global-margin*0.5;
+}
+.box__content {
+  @include l-fit;
+  @include line-height-fit($global-lineheight, bottom);
+
+  &:first-child {
+    @include line-height-fit($global-lineheight, top);
+  }
+}
+
+.column--sidebar {
+  .box {
+    &,
+    & p {
+      line-height: $line-height-condensed;
+    }
+  }
+  .box__content {
+    @include line-height-fit($line-height-condensed, bottom);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Growing screens.
+
+// Media query when the primary layout becomes multi-column.
+@include breakpoint(wide) {
+  .box {
+    padding: $global-padding;
+  }
+  .box__title {
+    margin-bottom: $global-margin;
+  }
+}

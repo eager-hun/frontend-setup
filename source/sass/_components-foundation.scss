@@ -1,13 +1,13 @@
 /**
  * @file
- * Components.
+ * Components - customizing Foundation's.
  */
 
 // #############################################################################
 // Dropdowns.
 
-// Foundation fix - without this, invisible dropdown panes trigger horizontal
-// scrollbars on smaller screens.
+// Foundation fix - without this, invisible (inactive) dropdown panes can
+// interfere with scrollbars on the body element.
 
 .dropdown-pane {
   height: 0;

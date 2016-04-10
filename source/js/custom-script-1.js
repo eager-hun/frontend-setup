@@ -23,6 +23,7 @@
 
   // Set defaults for Foundation components.
   window.Foundation.Dropdown.defaults.closeOnClick = true;
+  window.Foundation.Dropdown.defaults.hoverPane = true;
 
   // Execute Foundation.
   $(document).foundation();

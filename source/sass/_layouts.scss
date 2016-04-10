@@ -37,5 +37,98 @@
 }
 
 
+// #############################################################################
+// Layout-fitters.
+
+.l-fit {
+  @include l-fit;
+}
+
+
+// #############################################################################
+// Page levels.
+// (Horizontal sections - often seen as full-width colourful stripes - on the
+// page.)
+
+.page__level {
+  $level-vertical-padding: map-get($grid-column-responsive-gutter, narrow)*0.5;
+  padding-top: rem-calc($level-vertical-padding);
+  padding-bottom: rem-calc($level-vertical-padding);
+}
+
+// -----------------------------------------------------------------------------
+// Growing screens
+
+@include breakpoint(wide) {
+  .page__level {
+    $level-vertical-padding-wide: map-get($grid-column-responsive-gutter, wide);
+    padding-top: rem-calc($level-vertical-padding-wide);
+    padding-bottom: rem-calc($level-vertical-padding-wide);
+  }
+}
+@include breakpoint(wide-m) {
+  .page__level {
+    $level-vertical-padding-wide-m: rem-calc(map-get($breakpoints, wide-m)/$grid-column-count) + map-get($grid-column-responsive-gutter, wide);
+    padding-top: rem-calc($level-vertical-padding-wide-m);
+    padding-bottom: rem-calc($level-vertical-padding-wide-m);
+  }
+}
+@include breakpoint(wide-l) {
+  .page__level {
+    $level-vertical-padding-wide-l: $global-width/$grid-column-count + map-get($grid-column-responsive-gutter, wide);
+    padding-top: rem-calc($level-vertical-padding-wide-l);
+    padding-bottom: rem-calc($level-vertical-padding-wide-l);
+  }
+}
+
+
+// #############################################################################
+// Main columns' and sidebars' arrangements.
+
+.column--main + .column--sidebar {
+  margin-top: map-get($grid-column-responsive-gutter, narrow)*2;
+}
+
+// -----------------------------------------------------------------------------
+// Growing screens.
+
+// Media query when the primary layout becomes multi-column.
+@include breakpoint(wide) {
+  .column--main + .column--sidebar {
+    margin-top: 0;
+  }
+}
+
+
+// #############################################################################
+// Box arrangements.
+
+.column {
+  .box {
+    margin-bottom: map-get($grid-column-responsive-gutter, narrow)*0.5;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Growing screens.
+
+// Media query when the primary layout becomes multi-column.
+@include breakpoint(wide) {
+  .column {
+    .box {
+      margin-bottom: map-get($grid-column-responsive-gutter, wide);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+
 
 

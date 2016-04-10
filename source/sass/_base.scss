@@ -3,4 +3,7 @@
  * Base.
  */
 
+.pseudo-heading {
+  @include pseudo-heading-base();
+}
 

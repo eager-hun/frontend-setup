@@ -14,8 +14,9 @@ $bower_components = $base_path . '/bower_components';
 $css_location     = $base_path . '/build/css';
 $js_location      = $base_path . '/build/js';
 
+// Looks like Foundation does its resets, so we could spare including normalize?
+// <link rel="stylesheet" href="{$bower_components}/normalize-css/normalize.css">
 $stylesheets = <<<EOT
-  <link rel="stylesheet" href="{$bower_components}/normalize-css/normalize.css">
   <link rel="stylesheet"     href="{$css_location}/foundation-styles.css">
   <link rel="stylesheet"     href="{$css_location}/custom-styles.css">
 EOT;
@@ -61,31 +62,55 @@ $page_title = 'Page title';
       </div>
     </header>
 
-    <div id="page__main" class="page__level page__main">
-      <div class="container">
-        <div class="row">
+    <div id="page__main" class="page__main">
 
-          <div class="column column--main wide-16 wide-push-8">
-            <div class="box">
+      <div class="page__level">
+        <div class="container">
+          <div class="row">
+
+            <div class="column column--main wide-17 wide-push-7 wide-m-16 wide-m-push-8">
               <h1 class="page__title"><?php print $page_title; ?></h1>
-              <?php include('sample-contents/sample-texts.php');?>
-            </div>
-          </div><!-- /.column--main -->
+              <div class="box">
+                <div class="box__content">
+                  <?php include('sample-contents/sample-texts.php');?>
+                </div>
+              </div>
+            </div><!-- /.column--main -->
 
-          <div class="column column--sidebar wide-7 wide-pull-17">
-            <div class="box">
-              <?php include('sample-contents/sample-dropdowns.php');?>
-            </div>
-          </div><!-- /.column--sidebar -->
+            <div class="column column--sidebar wide-7 wide-pull-17 wide-m-pull-17">
+              <div class="box">
+                <div class="box__title">Box title one</div>
+                <div class="box__content">
+                  <?php include('sample-contents/sample-dropdowns.php');?>
+                  <p>Let us add a little text here, like this one.</p>
+                </div>
+              </div>
 
+              <div class="box">
+                <div class="box__title">Box title two, and this one is longer</div>
+                <div class="box__content">
+                  <?php include('sample-contents/placeholder-text-small-amount.php');?>
+                </div>
+              </div>
+
+              <div class="box">
+                <div class="box__title">Box title three</div>
+                <div class="box__content">
+                  <?php include('sample-contents/placeholder-text-small-amount.php');?>
+                </div>
+              </div>
+            </div><!-- /.column--sidebar -->
+
+          </div>
         </div>
-      </div>
+      </div><!-- /#page__level -->
+
     </div><!-- /#page__main -->
 
     <footer id="page__footer" class="page__level page__footer">
       <div class="container">
         <div class="row">
-          <div class="column">
+          <div class="column l-fit">
             <p><a href="#">Footer.</a></p>
           </div>
         </div>
