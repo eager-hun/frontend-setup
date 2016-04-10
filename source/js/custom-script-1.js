@@ -27,4 +27,10 @@
   // Execute Foundation.
   $(document).foundation();
 
+  console.log('Foundation.MediaQuery.current: ' + Foundation.MediaQuery.current);
+
+  $(window).on('resize', function() {
+    console.log('Foundation.MediaQuery.current: ' + Foundation.MediaQuery.current);
+  });
+
 })(jQuery, this, this.document);

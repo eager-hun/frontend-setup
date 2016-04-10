@@ -61,7 +61,7 @@ $page_title = 'Page title';
     <div id="page__main" class="page__level page__main">
       <div class="container">
         <div class="row">
-          <div class="column small-16 small-push-8">
+          <div class="column column--main wide-16 wide-push-8">
             <h1 class="page__title"><?php print $page_title; ?></h1>
 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in malesuada leo. Aenean elementum dictum mauris nec venenatis. Sed vehicula nunc at augue lacinia, vel cursus ligula interdum. Vivamus ut augue viverra, luctus leo a, mattis orci.</p>
@@ -156,19 +156,20 @@ $page_title = 'Page title';
 
 
 
-          </div>
-          <div class="column small-7 small-pull-17">
+          </div><!-- /.column--main -->
+
+          <div class="column column--sidebar wide-7 wide-pull-17">
             <button class="button" type="button" data-toggle="example-dropdown">Toggle Dropdown</button>
             <div class="dropdown-pane" id="example-dropdown" data-dropdown data-auto-focus="true">
               Example form in a dropdown.
               <form>
                 <div class="row">
-                  <div class="medium-12 columns">
+                  <div class="narrow-l-12 columns">
                     <label>Name
                       <input type="text" placeholder="Kirk, James T.">
                     </label>
                   </div>
-                  <div class="medium-12 columns">
+                  <div class="narrow-l-12 columns">
                     <label>Rank
                       <input type="text" placeholder="Captain">
                     </label>
@@ -180,7 +181,9 @@ $page_title = 'Page title';
             <div class="dropdown-pane" id="example-dropdown-1" data-dropdown data-hover="true">
               Just some junk that needs to be said. Or not. Your choice.
             </div>
-          </div>
+          </div><!-- /.column--sidebar -->
+
+
         </div>
       </div>
     </div><!-- /#page__main -->

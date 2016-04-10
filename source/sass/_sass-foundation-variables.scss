@@ -85,14 +85,24 @@ $global-text-direction: ltr;
 // 2. Breakpoints
 // --------------
 
+// NOTE 1:
+// Looks like we have to keep 'small' even if we don't like it and wouldn't
+// want to use it for anything, apparenly thanks to hardcoding issues inside
+// Foundation.
+// NOTE 2:
+// We also have to have a named breakpoint that is bigger than the biggest
+// of those that we want to generate classes for.
 $breakpoints: (
   small: 0,
-  medium: 640px,
-  large: 900px,
-  xlarge: 1010px,
-  xxlarge: 1150px,
+  narrow: 0,
+  narrow-m: 420px,
+  narrow-l: 560px,
+  wide: 700px,
+  wide-m: 820px,
+  wide-l: 960px,
+  just-to-avoid-foundation-glitch: 9000px
 );
-$breakpoint-classes: (small medium large);
+$breakpoint-classes: (narrow narrow-l wide wide-l);
 
 // 3. The Grid
 // -----------
@@ -100,8 +110,8 @@ $breakpoint-classes: (small medium large);
 $grid-row-width: $global-width;
 $grid-column-count: 24;
 $grid-column-responsive-gutter: (
-  small: 20px,
-  medium: 30px,
+  narrow: 20px,
+  wide: 30px,
 );
 $grid-column-align-edge: true;
 $block-grid-max: 8;
@@ -114,7 +124,7 @@ $header-font-weight: $global-weight-normal;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-sizes: (
-  small: (
+  narrow: (
     'h1': 24,
     'h2': 20,
     'h3': 19,
@@ -122,7 +132,7 @@ $header-sizes: (
     'h5': 17,
     'h6': 16,
   ),
-  medium: (
+  wide: (
     'h1': 48,
     'h2': 40,
     'h3': 31,
