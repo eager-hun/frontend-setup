@@ -70,11 +70,16 @@ $page_title = 'Page title';
 
             <div class="column column--main wide-17 wide-push-7 wide-m-16 wide-m-push-8">
               <h1 class="page__title"><?php print $page_title; ?></h1>
-              <div class="box">
-                <div class="box__content">
-                  <?php include('sample-contents/sample-texts.php');?>
-                </div>
-              </div>
+
+              <ul class="accordion" data-accordion>
+                <li class="accordion-item is-active" data-accordion-item>
+                  <a href="#" class="accordion-title">Texts for checking typography</a>
+                  <div class="accordion-content" data-tab-content>
+                    <?php include('sample-contents/sample-texts.php');?>
+                  </div>
+                </li>
+              </ul>
+
             </div><!-- /.column--main -->
 
             <div class="column column--sidebar wide-7 wide-pull-17 wide-m-pull-17">

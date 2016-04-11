@@ -21,12 +21,25 @@
   // ###########################################################################
   // Stuff.
 
+  // ---------------------------------------------------------------------------
   // Set defaults for Foundation components.
+
+  // Dropdown.
   window.Foundation.Dropdown.defaults.closeOnClick = true;
   window.Foundation.Dropdown.defaults.hoverPane = true;
 
+  // Accordion.
+  window.Foundation.Accordion.defaults.slideSpeed = 700;
+  window.Foundation.Accordion.defaults.multiExpand = true;
+  window.Foundation.Accordion.defaults.allowAllClosed = true;
+
+  // ---------------------------------------------------------------------------
   // Execute Foundation.
+
   $(document).foundation();
+
+  // ---------------------------------------------------------------------------
+  // Helpers.
 
   console.log('Foundation.MediaQuery.current: ' + Foundation.MediaQuery.current);
 

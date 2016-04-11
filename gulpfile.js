@@ -166,7 +166,8 @@ jsBundles.framework.files = [
   paths.source.frameworkJs + '/foundation.util.keyboard.js',
   paths.source.frameworkJs + '/foundation.util.box.js',
   paths.source.frameworkJs + '/foundation.util.triggers.js',
-  paths.source.frameworkJs + '/foundation.dropdown.js'
+  paths.source.frameworkJs + '/foundation.dropdown.js',
+  paths.source.frameworkJs + '/foundation.accordion.js'
 ];
 
 
