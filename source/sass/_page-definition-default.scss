@@ -13,14 +13,14 @@
   padding-bottom: $global-margin*2;
 }
 .page__header {
-  background: teal;
+  background: color(prim);
 }
 .page__footer {
-  background: darkslategray;
+  background: color(bg-dark);
 }
 
 .header__site-name {
-  @include override-link-color(white);
+  @include override-link-color($color: color(link-invert));
 
   font-weight: 700;
 }

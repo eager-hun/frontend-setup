@@ -7,3 +7,22 @@
   @include pseudo-heading-base();
 }
 
+a {
+  color: color(link);
+  text-decoration: none;
+
+  &:visited {
+    // color: color(link-visited);
+    color: color(link);
+  }
+  &:hover {
+    color: color(link-hover);
+  }
+  &:visited:hover {
+    // color: color(link-visited);
+    color: color(link);
+  }
+  &:focus {
+    outline: 1px dotted color(link);
+  }
+}

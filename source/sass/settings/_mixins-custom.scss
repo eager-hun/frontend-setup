@@ -203,6 +203,6 @@
   color: white;
 
   a:not([class]) {
-    @include override-link-color($color: white);
+    @include override-link-color($color: color(link-invert));
   }
 }

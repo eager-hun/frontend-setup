@@ -8,7 +8,7 @@
 // Boxes.
 
 .box {
-  background: rgba(silver, 0.25);
+  background: color(blockfill);
   padding: $global-padding*0.5;
 
   @include breakpoint(wide) {
