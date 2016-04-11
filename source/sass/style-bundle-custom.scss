@@ -5,9 +5,9 @@
  * Used for stitching the partials together.
  */
 
-@import "sass-foundation-variables"; // Must be first!
-@import "sass-custom-variables"; // Must be after foundation-vars!
-@import "sass-custom-mixins";
+@import "settings/variables-foundation"; // Must be first!
+@import "settings/variables-custom"; // Must be after foundation-vars!
+@import "settings/mixins-custom";
 
 @import "grid/row"; // We'll need the mixins that are in this.
 @import "grid/column"; // We'll need the mixins that are in this.

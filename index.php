@@ -17,8 +17,8 @@ $js_location      = $base_path . '/build/js';
 // Looks like Foundation does its resets, so we could spare including normalize?
 // <link rel="stylesheet" href="{$bower_components}/normalize-css/normalize.css">
 $stylesheets = <<<EOT
-  <link rel="stylesheet"     href="{$css_location}/foundation-styles.css">
-  <link rel="stylesheet"     href="{$css_location}/custom-styles.css">
+  <link rel="stylesheet" href="{$css_location}/style-bundle-foundation.css">
+  <link rel="stylesheet" href="{$css_location}/style-bundle-custom.css">
 EOT;
 
 $scripts = <<<EOT
