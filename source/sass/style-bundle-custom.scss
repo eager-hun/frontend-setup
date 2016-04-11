@@ -5,8 +5,9 @@
  * Used for stitching the partials together.
  */
 
-@import "settings/variables-foundation"; // Must be first!
-@import "settings/variables-custom"; // Must be after foundation-vars!
+@import "settings/variables-custom-1"; // Must be BEFORE foundation-vars!
+@import "settings/variables-foundation";
+@import "settings/variables-custom-2"; // Must be AFTER foundation-vars!
 @import "settings/mixins-custom";
 
 @import "grid/row"; // We'll need the mixins that are in this.

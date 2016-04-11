@@ -1,0 +1,14 @@
+/**
+ * @file
+ * Custom SASS variables - before Foundation.
+ *
+ * NOTE 1:
+ * Don't try to override Foundation variables here at all.
+ * If you want to modify Foundation variables, it's better to do it in
+ * ./_sass-foundation-variables.scss.
+ *
+ * NOTE 2:
+ * The variables defined here will be available to use in the Foundation
+ * variables file, as this file is being included BEFORE that one.
+ */
+

@@ -1,11 +1,15 @@
 /**
  * @file
- * Custom SASS variables.
+ * Custom SASS variables - after Foundation.
  *
- * NOTE:
+ * NOTE 1:
  * Don't try to override Foundation variables here at all.
  * If you want to modify Foundation variables, it's better to do it in
  * ./_sass-foundation-variables.scss.
+ *
+ * NOTE 2:
+ * You can use Foundation variables in this one, as this file is being
+ * included AFTER the Foundation vars file.
  */
 
 $line-height-condensed: $global-lineheight*0.9;
