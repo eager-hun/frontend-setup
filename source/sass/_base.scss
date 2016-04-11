@@ -11,16 +11,14 @@ a {
   color: color(link);
   text-decoration: none;
 
-  &:visited {
-    // color: color(link-visited);
-    color: color(link);
+  &:not([class]):visited {
+    color: color(link-visited);
   }
   &:hover {
     color: color(link-hover);
   }
-  &:visited:hover {
-    // color: color(link-visited);
-    color: color(link);
+  &:not([class]):visited:hover {
+    color: color(link-visited);
   }
   &:focus {
     outline: 1px dotted color(link);
