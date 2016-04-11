@@ -162,11 +162,11 @@ paths.source.frameworkJs = paths.source.bower + '/foundation-sites/js';
 
 jsBundles.framework.files = [
   paths.source.frameworkJs + '/foundation.core.js',
-  paths.source.frameworkJs + '/foundation.dropdown.js',
   paths.source.frameworkJs + '/foundation.util.mediaQuery.js',
   paths.source.frameworkJs + '/foundation.util.keyboard.js',
   paths.source.frameworkJs + '/foundation.util.box.js',
-  paths.source.frameworkJs + '/foundation.util.triggers.js'
+  paths.source.frameworkJs + '/foundation.util.triggers.js',
+  paths.source.frameworkJs + '/foundation.dropdown.js'
 ];
 
 
