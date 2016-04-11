@@ -100,7 +100,7 @@ $breakpoints: (
   wide: 700px,
   wide-m: 860px,
   wide-l: 1050px,
-  just-to-avoid-foundation-glitch: 9000px
+  widest: $global-width,
 );
 $breakpoint-classes: (narrow narrow-l wide wide-m);
 

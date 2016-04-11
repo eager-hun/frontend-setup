@@ -163,10 +163,10 @@
   // identical to the whitespace between the page title and the header (the
   // .page__level's padding).
   @include breakpoint(wide-m) {
-    padding-bottom: rem-calc(map-get($breakpoints, wide-m)/$grid-column-count) + map-get($grid-column-responsive-gutter, wide);
+    padding-bottom: map-get($visual-width-of-1-column, wide-m);
   }
   @include breakpoint(wide-l) {
-    padding-bottom: $global-width/$grid-column-count + map-get($grid-column-responsive-gutter, wide);
+    padding-bottom: map-get($visual-width-of-1-column, widest);
   }
 }
 
