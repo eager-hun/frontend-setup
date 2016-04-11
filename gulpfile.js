@@ -333,7 +333,7 @@ gulp.task('serve', ['compile-css', 'compile-js-libs', 'compile-framework-js', 'c
   // + See https://www.browsersync.io/docs/gulp/#gulp-manual-reload
   // + See https://github.com/gulpjs/gulp/blob/master/docs/API.md#user-content-tasks
 
-  gulp.watch([paths.source.css + '/*.scss'], ['reload-at-css'])
+  gulp.watch([paths.source.css + '/**/*.scss'], ['reload-at-css'])
     .on('change', watcherAnnounce);
 
   gulp.watch([paths.source.customJs + '/*.js'], ['reload-at-custom-js'])
