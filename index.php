@@ -72,10 +72,16 @@ $page_title = 'Page title';
               <h1 class="page__title"><?php print $page_title; ?></h1>
 
               <ul class="accordion" data-accordion>
-                <li class="accordion-item is-active" data-accordion-item>
+                <li class="accordion-item" data-accordion-item>
                   <a href="#" class="accordion-title">Texts for checking typography</a>
                   <div class="accordion-content" data-tab-content>
                     <?php include('sample-contents/sample-texts.php');?>
+                  </div>
+                </li>
+                <li class="accordion-item" data-accordion-item>
+                  <a href="#" class="accordion-title">Next thing</a>
+                  <div class="accordion-content" data-tab-content>
+                    This is where the next thing will be able to reside.
                   </div>
                 </li>
               </ul>

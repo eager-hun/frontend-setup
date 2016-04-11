@@ -3,6 +3,7 @@
  * Components - customizing Foundation's.
  */
 
+
 // #############################################################################
 // Dropdowns.
 
@@ -19,4 +20,44 @@
     height: auto;
     width: $dropdown-width;
   }
+}
+
+
+// #############################################################################
+// Accordion.
+
+.accordion {
+  border: none;
+}
+.accordion-item {
+  border-top: 1px solid scale_color(scale_color($accordion-background, $lightness: 35%), $saturation: -75%);
+  transition: $transition-speed-mid border-color ease-in-out;
+
+  &:first-child {
+    border-top: 0;
+  }
+  .is-active + & {
+    border-top-color: transparent;
+  }
+}
+
+.accordion-title {
+  background: $accordion-background;
+  border: none;
+  color: $accordion-item-color;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: $transition-speed-mid background ease-in-out;
+
+  &:hover,
+  &:focus {
+    background: $accordion-item-background-hover;
+    color: $accordion-item-color;
+    outline: none;
+  }
+}
+.accordion-content {
+  @include l-fit;
+
+  border: none;
 }

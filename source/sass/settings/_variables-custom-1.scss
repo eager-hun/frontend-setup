@@ -62,3 +62,11 @@ $colors: (
 @function color($key) {
   @return map-get($colors, $key);
 }
+
+
+// #############################################################################
+// Effects.
+
+$transition-speed-fast: 125ms;
+$transition-speed-mid:  250ms;
+$transition-speed-slow: 700ms;
