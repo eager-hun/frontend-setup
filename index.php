@@ -85,7 +85,7 @@ $page_title = 'Page title';
                       <?php include('sample-contents/sample-lists.php');?>
                     </div>
                   </li>
-                  <li class="accordion-item is-active" data-accordion-item>
+                  <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Sample grids</a>
                     <div class="accordion-content" data-tab-content>
                       <?php include('sample-contents/sample-grids.php');?>
