@@ -46,7 +46,7 @@
 
 
 // #############################################################################
-// Page levels.
+// Page levels and page centering.
 // (Horizontal sections - often seen as full-width colourful stripes - on the
 // page.)
 
@@ -54,6 +54,10 @@
   $level-vertical-padding: map-get($grid-column-responsive-gutter, narrow)*0.5;
   padding-top: rem-calc($level-vertical-padding);
   padding-bottom: rem-calc($level-vertical-padding);
+}
+
+.container {
+  min-width: $page-min-width;
 }
 
 // -----------------------------------------------------------------------------

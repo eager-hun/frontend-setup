@@ -22,6 +22,8 @@ $line-height-condensed: $global-lineheight*0.9;
 // #############################################################################
 // Layout.
 
+$page-min-width: 300px;
+
 $visual-width-of-1-column: (
   'wide-m': rem-calc(map-get($breakpoints, wide-m)/$grid-column-count) + map-get($grid-column-responsive-gutter, wide),
   'wide-l': rem-calc(map-get($breakpoints, wide-l)/$grid-column-count) + map-get($grid-column-responsive-gutter, wide),
