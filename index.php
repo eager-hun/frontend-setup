@@ -51,72 +51,75 @@ $page_title = 'Page title';
     <?php print $stylesheets; ?>
   </head>
   <body>
+    <div id="page__wrap" class="page__wrap">
 
-    <header id="page__header" class="page__level page__header">
-      <div class="container">
-        <div class="row">
-          <div class="column">
-            <a href="#" class="header__site-name">Site name</a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div id="page__main" class="page__main">
-
-      <div class="page__level">
+      <header id="page__header" class="page__level page__header">
         <div class="container">
           <div class="row">
-
-            <div class="column column--main wide-17 wide-push-7 wide-m-16 wide-m-push-8">
-              <h1 class="page__title"><?php print $page_title; ?></h1>
-
-              <ul class="accordion" data-accordion>
-                <li class="accordion-item" data-accordion-item>
-                  <a href="#" class="accordion-title">Texts for checking typography</a>
-                  <div class="accordion-content" data-tab-content>
-                    <?php include('sample-contents/sample-texts.php');?>
-                  </div>
-                </li>
-                <li class="accordion-item" data-accordion-item>
-                  <a href="#" class="accordion-title">Next thing</a>
-                  <div class="accordion-content" data-tab-content>
-                    This is where the next thing will be able to reside.
-                  </div>
-                </li>
-              </ul>
-
-            </div><!-- /.column--main -->
-
-            <div class="column column--sidebar wide-7 wide-pull-17 wide-m-pull-17">
-              <div class="box">
-                <div class="box__title">Box title one</div>
-                <div class="box__content">
-                  <?php include('sample-contents/sample-dropdowns.php');?>
-                  <p>Let us add a little text here, like this one.</p>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="box__title">Box title two, and this one is longer</div>
-                <div class="box__content">
-                  <?php include('sample-contents/placeholder-text-small-amount.php');?>
-                </div>
-              </div>
-
-              <div class="box">
-                <div class="box__title">Box title three</div>
-                <div class="box__content">
-                  <?php include('sample-contents/placeholder-text-small-amount.php');?>
-                </div>
-              </div>
-            </div><!-- /.column--sidebar -->
-
+            <div class="column">
+              <a href="#" class="header__site-name">Site name</a>
+            </div>
           </div>
         </div>
-      </div><!-- /#page__level -->
+      </header>
 
-    </div><!-- /#page__main -->
+      <div id="page__main" class="page__main">
+
+        <div class="page__level">
+          <div class="container">
+            <div class="row">
+
+              <div class="column column--main wide-17 wide-push-7 wide-m-16 wide-m-push-8">
+                <h1 class="page__title"><?php print $page_title; ?></h1>
+
+                <ul class="accordion" data-accordion>
+                  <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Texts for checking typography</a>
+                    <div class="accordion-content" data-tab-content>
+                      <?php include('sample-contents/sample-texts.php');?>
+                    </div>
+                  </li>
+                  <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Next thing</a>
+                    <div class="accordion-content" data-tab-content>
+                      This is where the next thing will be able to reside.
+                    </div>
+                  </li>
+                </ul>
+
+              </div><!-- /.column--main -->
+
+              <div class="column column--sidebar wide-7 wide-pull-17 wide-m-pull-17">
+                <div class="box">
+                  <div class="box__title">Box title one</div>
+                  <div class="box__content">
+                    <?php include('sample-contents/sample-dropdowns.php');?>
+                    <p>Let us add a little text here, like this one.</p>
+                  </div>
+                </div>
+
+                <div class="box">
+                  <div class="box__title">Box title two, and this one is longer</div>
+                  <div class="box__content">
+                    <?php include('sample-contents/placeholder-text-small-amount.php');?>
+                  </div>
+                </div>
+
+                <div class="box">
+                  <div class="box__title">Box title three</div>
+                  <div class="box__content">
+                    <?php include('sample-contents/placeholder-text-small-amount.php');?>
+                  </div>
+                </div>
+              </div><!-- /.column--sidebar -->
+
+            </div>
+          </div>
+        </div><!-- /#page__level -->
+
+      </div><!-- /#page__main -->
+      <div class="footer__room-preserve"></div>
+    </div><!-- /#page__wrap -->
 
     <footer id="page__footer" class="page__level page__footer">
       <div class="container">
