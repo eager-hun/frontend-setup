@@ -59,7 +59,7 @@
 // ---------
 
 $global-font-size: 100%;
-$global-width: rem-calc(1120);
+$global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $primary-color: color(prim); // #2199e8;
 $secondary-color: color(accent-1);
@@ -98,8 +98,8 @@ $breakpoints: (
   narrow-m: 420px,
   narrow-l: 560px,
   wide: 700px,
-  wide-m: 860px,
-  wide-l: 1050px,
+  wide-m: 920px,
+  wide-l: 1100px,
   widest: $global-width,
 );
 $breakpoint-classes: (narrow narrow-l wide wide-m);

@@ -53,3 +53,36 @@
     margin-bottom: $global-margin;
   }
 }
+
+
+// #############################################################################
+// Grid-demos.
+
+// (These rules don't establish grids, don't even modify them, they just make
+// items more visually identifiable; like the grid-demos part is a component on
+// the page.)
+
+.grid-demos {
+  padding-top: 3em;
+  padding-bottom: 3em;
+
+  .row + .row {
+    margin-top: 3em;
+  }
+  .row + p {
+    margin-top: 3.5em;
+  }
+  p + .row {
+    margin-top: 2em;
+  }
+  p {
+    line-height: $line-height-condensed;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  .box {
+    @include text-color-invert-zone();
+
+    background: color(accent-1);
+  }
+}
