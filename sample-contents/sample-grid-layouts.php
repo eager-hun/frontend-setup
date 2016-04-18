@@ -36,7 +36,7 @@
 
   </div>
 
-  <p>By default, Foundation will float the last grid item to the opposite direction than the others (right). This is due to work around rounding errors and ensure perfectly aligned column edges on the right side too.</p>
+  <p>By default, Foundation will float the last grid item to the opposite direction than the others (right). This is due to work around rounding errors in width calculations, therefore to ensure perfectly aligned column edges on the right side too.</p>
   <p>Columns also seem to be able to wrap to multi lines.</p>
   <p>If there is a remainder at the end, it goes to the wrong end.</p>
 

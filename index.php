@@ -69,28 +69,33 @@ $page_title = 'Page title';
           <div class="container">
             <div class="row">
 
+              <!-- Main column. -->
               <div class="column column--main wide-17 wide-push-7 wide-m-16 wide-m-push-8">
                 <h1 class="page__title"><?php print $page_title; ?></h1>
 
                 <ul class="accordion" data-accordion>
+
                   <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Texts for checking typography</a>
                     <div class="accordion-content" data-tab-content>
                       <?php include('sample-contents/sample-texts.php');?>
                     </div>
                   </li>
+
                   <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Lists for checking typography</a>
                     <div class="accordion-content" data-tab-content>
                       <?php include('sample-contents/sample-lists.php');?>
                     </div>
                   </li>
+
                   <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">Sample grids</a>
+                    <a href="#" class="accordion-title">Sample layouts with grids</a>
                     <div class="accordion-content" data-tab-content>
-                      <?php include('sample-contents/sample-grids.php');?>
+                      <?php include('sample-contents/sample-grid-layouts.php');?>
                     </div>
                   </li>
+
                   <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Next thing</a>
                     <div class="accordion-content" data-tab-content>
@@ -101,7 +106,9 @@ $page_title = 'Page title';
 
               </div><!-- /.column--main -->
 
+              <!-- Sidebar. -->
               <div class="column column--sidebar wide-7 wide-pull-17 wide-m-pull-17">
+
                 <div class="box">
                   <div class="box__title">Box title one</div>
                   <div class="box__content">
@@ -123,6 +130,7 @@ $page_title = 'Page title';
                     <?php include('sample-contents/placeholder-text-small-amount.php');?>
                   </div>
                 </div>
+
               </div><!-- /.column--sidebar -->
 
             </div>

@@ -176,6 +176,7 @@
   @include line-height-fit($header-lineheight, top, 1.75);
 }
 
+
 // #############################################################################
 // Colors.
 
@@ -204,5 +205,23 @@
 
   a:not([class]) {
     @include override-link-color($color: color(link-invert));
+  }
+}
+
+
+// #############################################################################
+// Debug utils.
+
+// See http://www.sitepoint.com/debugging-sass-maps/ .
+// Usage:
+// @include debug-map($map-to-inspect);
+// then look in the generated .css.
+@mixin debug-map($map) {
+  @at-root {
+    __properties__ {
+      @each $key, $value in $map {
+        #{$key}: inspect($value);
+      }
+    }
   }
 }

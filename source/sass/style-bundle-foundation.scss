@@ -11,9 +11,9 @@
 // #############################################################################
 // SASS VARIABLES.
 
-@import "settings/variables-custom-1"; // Must be BEFORE foundation-vars!
-@import "settings/variables-foundation";
-@import "settings/variables-custom-2"; // Must be AFTER foundation-vars!
+@import "setup/variables-custom-1"; // Must be BEFORE foundation-vars!
+@import "setup/variables-foundation";
+@import "setup/variables-custom-2"; // Must be AFTER foundation-vars!
 
 
 // #############################################################################
