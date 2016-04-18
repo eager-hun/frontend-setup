@@ -152,8 +152,8 @@
   }
 }
 
-// Offsets text such way that its line-height will not influence how it seems
-// to fit with its surroundings.
+// Offsets text, or text-containing elements such way that its line-height
+// will not influence how it seems to fit with its surroundings.
 @mixin line-height-fit($line-height, $pos, $correction: 0) {
   // Take the part of line-height that's above 1, half it (as it is distributed
   // on the top and the bottom), then add an em unit on it.
@@ -162,6 +162,17 @@
   $offset: ($line-height - 1)*0.5*(1+$correction);
   $offset-w-unit: $offset * 1em;
   margin-#{$pos}: -$offset-w-unit;
+
+  @if $pos == (top) {
+    & > img:first-child {
+      margin-top: $offset-w-unit;
+    }
+  }
+  @else if $pos == (bottom) {
+    & > img:last-child {
+      margin-bottom: $offset-w-unit;
+    }
+  }
 }
 
 @mixin page-title-appearance {

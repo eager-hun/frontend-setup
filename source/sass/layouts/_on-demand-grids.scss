@@ -19,8 +19,10 @@
     &:nth-child(3n+3) {
       clear: right;
     }
-    &:nth-last-child(2),
-    &:nth-last-child(3) {
+    &:nth-last-child(2):nth-child(3n+2),
+    &:nth-last-child(2):nth-child(3n+1),
+    &:nth-last-child(3):nth-child(3n+1)
+    {
       margin-bottom: 0;
     }
   }
@@ -38,9 +40,13 @@
     &:nth-child(4n+4) {
       clear: right;
     }
-    &:nth-last-child(2),
-    &:nth-last-child(3),
-    &:nth-last-child(4) {
+    &:nth-last-child(2):nth-child(4n+3),
+    &:nth-last-child(2):nth-child(4n+2),
+    &:nth-last-child(2):nth-child(4n+1),
+    &:nth-last-child(3):nth-child(4n+2),
+    &:nth-last-child(3):nth-child(4n+1),
+    &:nth-last-child(4):nth-child(4n+1)
+    {
       margin-bottom: 0;
     }
   }
@@ -77,5 +83,39 @@
   }
   @include breakpoint(wide-l) {
     @include on-demand-grid-4-col;
+  }
+}
+
+
+// #############################################################################
+// Flexboxified grids.
+// It seems any of the hereby defined on-demand grids can be flexboxified by
+// adding the classes row--wrap and row--flexbox--wide to them.
+
+// See https://css-tricks.com/snippets/css/a-guide-to-flexbox/ .
+
+.row--flexbox--wide {
+  @include breakpoint(wide) {
+    .mdz-flexbox & {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      & > .column {
+        display: flex;
+        flex: 0 1 auto;
+        float: none;
+
+        & > .box {
+          flex: 0 1 auto;
+          width: 100%;
+        }
+      }
+    }
   }
 }

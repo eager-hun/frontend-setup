@@ -97,7 +97,7 @@ $page_title = 'Page title';
                   </li>
 
                   <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">On-demand grids</a>
+                    <a href="#" class="accordion-title">On-demand floated- and flexboxified grids</a>
                     <div class="accordion-content" data-tab-content>
                       <?php include('sample-contents/on-demand-grids-and-flexboxes.php');?>
                     </div>
