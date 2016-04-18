@@ -7,7 +7,7 @@
 
 <div class="grid-demos">
 
-  <p>These grids use the <code>.row</code> and <code>.column</code> classes, but <strong><em>noting like</em></strong> <code>.narrow-l-3</code> or <code>.wide-12</code>.</p>
+  <p>These grids use the <code>.row</code> and <code>.column</code> classes, but <strong><em>nothing like</em></strong> <code>.narrow-l-3</code> or <code>.wide-12</code>.</p>
 
   <p>The width (and vertical margins) for these grid items is defined in the custom <em>sass/layouts/_on&#8209;demand&#8209;grids.scss</em> stylesheet.</p>
 
