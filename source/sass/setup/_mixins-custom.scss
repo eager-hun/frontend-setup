@@ -96,6 +96,27 @@
   }
 }
 
+@mixin vertical-item-margins() {
+  margin-bottom: map-get($grid-column-responsive-gutter, narrow)*0.5;
+
+  @include breakpoint(wide) {
+    margin-bottom: map-get($grid-column-responsive-gutter, wide);
+  }
+  @include breakpoint(wide-m) {
+    margin-bottom: map-get($visual-width-of-1-column, wide-m)*0.5;
+  }
+  @include breakpoint(wide-l) {
+    margin-bottom: map-get($visual-width-of-1-column, wide-l)*0.5;
+  }
+  @include breakpoint(widest) {
+    margin-bottom: map-get($visual-width-of-1-column, widest)*0.5;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 
 // #############################################################################
 // Typography.

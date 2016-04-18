@@ -38,6 +38,20 @@
 
 
 // #############################################################################
+// Further options to override Foundation grid.
+
+// Disabling the last-column-being-floated-to-the-opposite-direction by adding
+// .row--wrap class to the row.
+// NOTE: overspecified selector to win over Foundation generated styles.
+.row.row--wrap {
+  .column:last-child:not(:first-child),
+  .columns:last-child:not(:first-child) {
+    float: left;
+  }
+}
+
+
+// #############################################################################
 // Layout-fitters.
 
 .l-fit {
@@ -116,46 +130,6 @@
 
 .column {
   .box {
-    margin-bottom: map-get($grid-column-responsive-gutter, narrow)*0.5;
+    @include vertical-item-margins();
   }
-}
-
-// -----------------------------------------------------------------------------
-// Growing screens.
-
-// Media query when the primary layout becomes multi-column.
-@include breakpoint(wide) {
-  .column {
-    .box {
-      margin-bottom: map-get($grid-column-responsive-gutter, wide);
-    }
-  }
-}
-
-@include breakpoint(wide-m) {
-  .column {
-    .box {
-      margin-bottom: map-get($visual-width-of-1-column, wide-m)*0.5;
-    }
-  }
-}
-
-@include breakpoint(wide-l) {
-  .column {
-    .box {
-      margin-bottom: map-get($visual-width-of-1-column, wide-l)*0.5;
-    }
-  }
-}
-
-@include breakpoint(widest) {
-  .column {
-    .box {
-      margin-bottom: map-get($visual-width-of-1-column, widest)*0.5;
-    }
-  }
-}
-
-.column .box:last-child {
-  margin-bottom: 0;
 }

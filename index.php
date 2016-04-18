@@ -97,6 +97,13 @@ $page_title = 'Page title';
                   </li>
 
                   <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">On-demand grids</a>
+                    <div class="accordion-content" data-tab-content>
+                      <?php include('sample-contents/on-demand-grids-and-flexboxes.php');?>
+                    </div>
+                  </li>
+
+                  <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Next thing</a>
                     <div class="accordion-content" data-tab-content>
                       This is where the next thing will be able to reside.

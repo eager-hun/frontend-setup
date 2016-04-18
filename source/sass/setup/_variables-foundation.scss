@@ -95,10 +95,15 @@ $global-text-direction: ltr;
 $breakpoints: (
   small: 0,
   narrow: 0,
+  narrow-s-max: 419px,
   narrow-m: 420px,
+  narrow-m-max: 559px,
   narrow-l: 560px,
+  narrow-max: 699px,
   wide: 700px,
+  wide-s-max: 919px,
   wide-m: 920px,
+  wide-m-max: 1099px,
   wide-l: 1100px,
   widest: $global-width,
 );

@@ -10,11 +10,12 @@
 @import "setup/variables-custom-2"; // Must be AFTER foundation-vars!
 @import "setup/mixins-custom";
 
-@import "grid/row"; // We'll need the mixins that are in this.
-@import "grid/column"; // We'll need the mixins that are in this.
+@import "global";    // Grid mixins will need the vars that are in this.
+@import "grid/grid"; // We'll need the grid mixins that are in this.
 
 @import "base";
-@import "layouts";
+@import "layouts/layouts";
+@import "layouts/on-demand-grids";
 @import "page-definition-default";
 @import "components-foundation";
 @import "components-custom";
