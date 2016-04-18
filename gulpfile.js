@@ -84,7 +84,7 @@ var options = {
   // Whether to bundle a modernizr build into the customLibs js bundle.
   // NOTE: needs to be downloaded first into paths.source.customLibs.
   // Find the url there.
-  modernizr: true,
+  modernizr: false,
   // Cleaning deletes earlier instances of built files before writing new ones.
   cleaning: {
     enabled: true,

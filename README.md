@@ -2,6 +2,7 @@ Frontend build setup study.
 
 Keywords: Foundation, Gulp, Browsersync.
 
+
 ## Installing
 
 1. Edit project-related config (mainly locations) in `index.php` and in
@@ -14,6 +15,16 @@ Keywords: Foundation, Gulp, Browsersync.
 
 If all went well, Browsersync should immediately open a new tab in your default
 browser with the page.
+
+
+### Adding Modernizr build
+
+The modernizr build is not part of this package, therefore some functionality
+will not be available until it is added.
+
+The `source/libs-custom/modernizr-readme.txt` offers help on how it can be
+added.
+
 
 ## If you are new to node.js and npm:
 
