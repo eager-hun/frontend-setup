@@ -10,3 +10,6 @@ nbproject
 # GENERATED CONTENT:
 /build/*
 !/build/PLACEHOLDER_FOR_GIT.txt
+
+# MISC.
+/source/libs-custom/modernizr-custom.js

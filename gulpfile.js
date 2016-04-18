@@ -67,7 +67,7 @@ var paths = {
   },
   source: {
     bower:      'bower_components',
-    customLibs: 'source/customLibs',
+    customLibs: 'source/libs-custom',
     customJs:   'source/js',
     css:        'source/sass'
   },
@@ -81,6 +81,10 @@ var paths = {
 // Options.
 
 var options = {
+  // Whether to bundle a modernizr build into the customLibs js bundle.
+  // NOTE: needs to be downloaded first into paths.source.customLibs.
+  // Find the url there.
+  modernizr: true,
   // Cleaning deletes earlier instances of built files before writing new ones.
   cleaning: {
     enabled: true,
@@ -153,6 +157,10 @@ var jsBundles = {
 jsBundles.libs.files = [
   paths.source.bower + '/jquery/dist/jquery.js'
 ];
+
+if (options.modernizr) {
+  jsBundles.libs.files.unshift(paths.source.customLibs + '/modernizr-custom.js');
+}
 
 // -----------------------------------------------------------------------------
 // Framework JS files.
