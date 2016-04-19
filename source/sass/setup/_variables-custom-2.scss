@@ -29,3 +29,11 @@ $visual-width-of-1-column: (
   'wide-l': rem-calc(map-get($breakpoints, wide-l)/$grid-column-count) + map-get($grid-column-responsive-gutter, wide),
   'widest': $global-width/$grid-column-count + map-get($grid-column-responsive-gutter, wide),
 );
+
+$vertical-whitespaces: (
+  narrow: map-get($grid-column-responsive-gutter, narrow)*0.5,
+  wide:   map-get($grid-column-responsive-gutter, wide),
+  wide-m: map-get($visual-width-of-1-column, wide-m)*0.5,
+  wide-l: map-get($visual-width-of-1-column, wide-l)*0.5,
+  widest: map-get($visual-width-of-1-column, widest)*0.5
+);

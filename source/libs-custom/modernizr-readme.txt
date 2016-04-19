@@ -11,5 +11,5 @@ field.
 To get it working,
 
 1. save the build in this directory as modernizr-custom.js,
-2. in .gulpfile.js, set `options.modernizr` to true,
+2. in gulpfile.js, set `options.modernizr` to true,
 3. then restart gulp (and refresh the browser, if neccessary).

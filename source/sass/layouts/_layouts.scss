@@ -130,6 +130,6 @@
 
 .column {
   .box {
-    @include vertical-item-margins();
+    @include vertical-whitespace();
   }
 }

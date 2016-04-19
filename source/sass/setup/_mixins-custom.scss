@@ -96,24 +96,24 @@
   }
 }
 
-@mixin vertical-item-margins() {
-  margin-bottom: map-get($grid-column-responsive-gutter, narrow)*0.5;
+@mixin vertical-whitespace($apply: margin-bottom) {
 
-  @include breakpoint(wide) {
-    margin-bottom: map-get($grid-column-responsive-gutter, wide);
-  }
-  @include breakpoint(wide-m) {
-    margin-bottom: map-get($visual-width-of-1-column, wide-m)*0.5;
-  }
-  @include breakpoint(wide-l) {
-    margin-bottom: map-get($visual-width-of-1-column, wide-l)*0.5;
-  }
-  @include breakpoint(widest) {
-    margin-bottom: map-get($visual-width-of-1-column, widest)*0.5;
+  @each $breakpoint, $value in $vertical-whitespaces {
+    @include breakpoint($breakpoint) {
+      @if $apply == (margin-bottom) {
+        margin-bottom: $value;
+      }
+      @else if $apply == (paddings) {
+        padding-top: $value;
+        padding-bottom: $value;
+      }
+    }
   }
 
-  &:last-child {
-    margin-bottom: 0;
+  @if $apply == (margin-bottom) {
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -164,12 +164,14 @@
   margin-#{$pos}: -$offset-w-unit;
 
   @if $pos == (top) {
-    & > img:first-child {
+    & > img:first-child,
+    .natural-fit:first-child {
       margin-top: $offset-w-unit;
     }
   }
   @else if $pos == (bottom) {
-    & > img:last-child {
+    & > img:last-child,
+    .natural-fit:last-child {
       margin-bottom: $offset-w-unit;
     }
   }

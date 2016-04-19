@@ -58,7 +58,7 @@
 
 .row--wrap {
   & > .column {
-    @include vertical-item-margins();
+    @include vertical-whitespace();
   }
 }
 

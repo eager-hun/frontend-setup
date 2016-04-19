@@ -57,7 +57,10 @@
   }
 }
 .accordion-content {
+  @include vertical-whitespace($apply: paddings);
   @include l-fit;
+  @include line-height-fit($global-lineheight, top, 0.75);
+  @include line-height-fit($global-lineheight, bottom, 0.75);
 
   border: none;
 }

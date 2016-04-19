@@ -149,7 +149,7 @@
   <p>Note: this will only work if a modernizr build is included and is producing
     an .mdz-flexbox class on the :root element.</p>
 
-  <div class="row row--wrap row--flexbox--wide row--wrap--4">
+  <div class="row row--wrap row--flexbox--wide row--wrap--4 natural-fit">
 
     <div class="column">
       <div class="box">
