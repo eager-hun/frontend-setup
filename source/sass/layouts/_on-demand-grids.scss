@@ -123,3 +123,132 @@
     }
   }
 }
+
+
+// #############################################################################
+// LAYOUT 2 SIDEBARS.
+
+// This layout is used (best) for the primary layout of a page.
+
+// There are three sets of setups here: one for a symmetric arrangement (main
+// column in the middle, sidebars on each sides), and two other ones, for
+// grouping both sidebars onto one side (either left or right) of the main
+// column.
+
+// Default arrangement is a symmetric one: .column--main is in the center,
+// sidebars surround it from each side.
+
+// NOTE:
+// The arrangements you don't use should be commented out in order to not weigh
+// down the generated .css file.
+
+
+// -----------------------------------------------------------------------------
+// CONTENT-IN-MID: There is one sidebar: .column--sb--1
+
+.layout--2sb.content-in-mid.has-1-sb.sb-1 {
+
+  @include breakpoint(wide) {
+
+    & > .column--main {
+      @include grid-column(17);
+      @include grid-column-position(7);
+    }
+
+    & > .column--sidebar {
+      @include grid-column(7);
+      @include grid-column-position(-17);
+    }
+  }
+
+  @include breakpoint(wide-m) {
+
+    & > .column--main {
+      @include grid-column(16);
+      @include grid-column-position(8);
+    }
+
+    // The sidebar's width is inherited from smaller screen;
+    // + no need to offset it by one grid col, because it - being the last
+    // column - is floated to the right.
+  }
+}
+
+// -----------------------------------------------------------------------------
+// CONTENT-IN-MID: There is one sidebar: .column--sb--2
+
+.layout--2sb.content-in-mid.has-1-sb.sb-2 {
+
+  @include breakpoint(wide) {
+
+    & > .column--main {
+      @include grid-column(17);
+    }
+
+    & > .column--sidebar {
+      @include grid-column(7);
+    }
+  }
+
+  @include breakpoint(wide-m) {
+
+    & > .column--main {
+      @include grid-column(16);
+    }
+
+    // The sidebar's width is inherited from smaller screen;
+    // + no need to offset it by one grid col, because it - being the last
+    // column - is floated to the right.
+  }
+}
+
+// -----------------------------------------------------------------------------
+// CONTENT-IN-MID: Present in the layout: both sidebars.
+
+.layout--2sb.content-in-mid.has-2-sb {
+
+  @include breakpoint(wide) {
+
+    & > .column--main {
+      @include grid-column(17);
+      @include grid-column-position(7);
+    }
+
+    & > .column--sb--1 {
+      @include grid-column(7);
+      @include grid-column-position(-17);
+    }
+
+    & > .column--sb--2 {
+      @include grid-column(24);
+    }
+  }
+
+  @include breakpoint(wide-m) {
+
+    & > .column--main {
+      @include grid-column(16);
+      @include grid-column-position(8);
+    }
+
+    & > .column--sb--1 {
+      @include grid-column(7);
+      @include grid-column-position(-16);
+    }
+  }
+
+  @include breakpoint(wide-l) {
+    .column--main {
+      @include grid-column(14);
+      @include grid-column-position(5);
+    }
+    .column--sb--1 {
+      @include grid-column(5);
+      @include grid-column-position(-14);
+    }
+    .column--sb--2 {
+      @include grid-column(5);
+    }
+
+  }
+}

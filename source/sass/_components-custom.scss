@@ -75,5 +75,20 @@
 
   .box {
     background: color(blockfill);
+
+    &,
+    & p {
+      line-height: 1;
+    }
+  }
+  .box__content {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  code {
+    background: none;
+    border: none;
+    color: color(minor);
+    padding: 0;
   }
 }
