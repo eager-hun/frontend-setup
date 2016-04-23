@@ -67,67 +67,72 @@ $page_title = 'Page title';
 
         <div class="page__level">
           <div class="container">
+            <div class="row layout--2sb has-no-sb">
+              <div class="column column--main">
 
-            <h2>Feature demos</h2>
+                <h1 class="page__title">Feature demos</h1>
 
-            <ul class="accordion" data-accordion>
+                <ul class="accordion" data-accordion>
 
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title">Texts for checking typography</a>
-                <div class="accordion-content" data-tab-content>
-                  <?php include('sample-contents/sample-texts.php');?>
-                </div>
-              </li>
+                  <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Texts for checking typography</a>
+                    <div class="accordion-content" data-tab-content>
+                      <?php include('sample-contents/sample-texts.php');?>
+                    </div>
+                  </li>
 
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title">Lists for checking typography</a>
-                <div class="accordion-content" data-tab-content>
-                  <?php include('sample-contents/sample-lists.php');?>
-                </div>
-              </li>
+                  <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Lists for checking typography</a>
+                    <div class="accordion-content" data-tab-content>
+                      <?php include('sample-contents/sample-lists.php');?>
+                    </div>
+                  </li>
 
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title">Sample layouts with grids</a>
-                <div class="accordion-content" data-tab-content>
-                  <?php include('sample-contents/sample-grid-layouts.php');?>
-                </div>
-              </li>
+                  <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Sample layouts with grids</a>
+                    <div class="accordion-content" data-tab-content>
+                      <?php include('sample-contents/sample-grid-layouts.php');?>
+                    </div>
+                  </li>
 
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title">On-demand floated- and flexboxified grids</a>
-                <div class="accordion-content" data-tab-content>
-                  <?php include('sample-contents/on-demand-grids-and-flexboxes.php');?>
-                </div>
-              </li>
+                  <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">On-demand floated- and flexboxified grids</a>
+                    <div class="accordion-content" data-tab-content>
+                      <?php include('sample-contents/on-demand-grids-and-flexboxes.php');?>
+                    </div>
+                  </li>
 
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title">"Layout 2 sidebars" - a predefined layout set</a>
-                <div class="accordion-content" data-tab-content>
-                  <?php include('sample-contents/layout-2-sidebars.php');?>
-                </div>
-              </li>
+                  <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">"Layout 2 sidebars" - a predefined layout set</a>
+                    <div class="accordion-content" data-tab-content>
+                      <?php include('sample-contents/layout-2-sidebars.php');?>
+                    </div>
+                  </li>
 
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title">Page example with Foundation grid classes</a>
-                <div class="accordion-content reset" data-tab-content>
-                  <?php include('sample-contents/page-example-with-foundation-classes.php');?>
-                </div>
-              </li>
+                  <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Page example with Foundation grid classes</a>
+                    <div class="accordion-content reset" data-tab-content>
+                      <?php include('sample-contents/page-example-with-foundation-classes.php');?>
+                    </div>
+                  </li>
 
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title">Page example with "Layout 2 sidebars"</a>
-                <div class="accordion-content reset" data-tab-content>
-                  <?php include('sample-contents/page-example-with-layout-2-sidebars.php');?>
-                </div>
-              </li>
+                  <li class="accordion-item is-active" data-accordion-item>
+                    <a href="#" class="accordion-title">Page example with "Layout 2 sidebars"</a>
+                    <div class="accordion-content reset" data-tab-content>
+                      <?php include('sample-contents/page-example-with-layout-2-sidebars.php');?>
+                    </div>
+                  </li>
 
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title">Next thing</a>
-                <div class="accordion-content" data-tab-content>
-                  This is where the next thing will be able to reside.
-                </div>
-              </li>
-            </ul>
+                  <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Next thing</a>
+                    <div class="accordion-content" data-tab-content>
+                      This is where the next thing will be able to reside.
+                    </div>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
 
           </div>
         </div><!-- /.page__level -->

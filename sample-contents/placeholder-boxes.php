@@ -12,7 +12,7 @@
 
   <p>Nothing groundbreaking here.</p>
 
-  <div class="row">
+  <div class="row natural-fit">
     <div class="column wide-12">
       <div class="box">
         <div class="box__content">
