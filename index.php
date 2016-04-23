@@ -116,7 +116,7 @@ $page_title = 'Page title';
                     </div>
                   </li>
 
-                  <li class="accordion-item is-active" data-accordion-item>
+                  <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Page example with "Layout 2 sidebars"</a>
                     <div class="accordion-content reset" data-tab-content>
                       <?php include('sample-contents/page-example-with-layout-2-sidebars.php');?>

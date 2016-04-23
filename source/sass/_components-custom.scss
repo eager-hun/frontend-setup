@@ -93,4 +93,13 @@
     color: color(minor);
     padding: 0;
   }
+
+  &.l-2sb-demo {
+    .column--sb--1 .box {
+      background: desaturate(pink, 10%);
+    }
+    .column--sb--2 .box {
+      background: desaturate(palegreen, 10%);
+    }
+  }
 }
