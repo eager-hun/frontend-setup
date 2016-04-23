@@ -114,24 +114,6 @@
 
 
 // #############################################################################
-// Main columns' and sidebars' arrangements.
-
-.column--main + .column--sidebar {
-  margin-top: map-get($grid-column-responsive-gutter, narrow)*2;
-}
-
-// -----------------------------------------------------------------------------
-// Growing screens.
-
-// Media query when the primary layout becomes multi-column.
-@include breakpoint(wide) {
-  .column--main + .column--sidebar {
-    margin-top: 0;
-  }
-}
-
-
-// #############################################################################
 // Box arrangements.
 
 .column {
