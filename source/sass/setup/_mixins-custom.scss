@@ -218,13 +218,11 @@
   margin-#{$pos}: -$offset-w-unit;
 
   @if $pos == (top) {
-    & > img:first-child,
     .natural-fit:first-child {
       margin-top: $offset-w-unit;
     }
   }
   @else if $pos == (bottom) {
-    & > img:last-child,
     .natural-fit:last-child {
       margin-bottom: $offset-w-unit;
     }
