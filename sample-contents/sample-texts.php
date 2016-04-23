@@ -49,7 +49,7 @@ Aenean elementum dictum mauris nec venenatis. Sed vehicula nunc at augue
 lacinia, vel cursus ligula interdum. Vivamus ut augue viverra, luctus leo a,
 mattis orci.</p>
 
-<h1 class="pseudo-heading h3">Heading type three Sed a libero ut nunc fringilla gravida vel ut nibh. Ut et
+<h1 class="h3">Heading type three Sed a libero ut nunc fringilla gravida vel ut nibh. Ut et
 condimentum tellus.</h1>
 
 <p>Sed a libero ut nunc fringilla gravida vel ut nibh. Ut et condimentum tellus.

@@ -15,7 +15,7 @@
 
 
 
-  <h2 class="pseudo-heading h4">3 column on-demand grid.</h2>
+  <h2 class="h4">3 column on-demand grid.</h2>
 
   <!--
   NOTE: you can add row--flexbox--wide class (in inspector) to flexboxify it.
@@ -71,7 +71,7 @@
 
 
 
-  <h2 class="pseudo-heading h4">4 column on-demand grid.</h2>
+  <h2 class="h4">4 column on-demand grid.</h2>
 
   <div class="row row--wrap row--wrap--4">
 
@@ -140,7 +140,7 @@
 
 
 
-  <h2 class="pseudo-heading h4">Flexboxified grid.</h2>
+  <h2 class="h4">Flexboxified grid.</h2>
 
   <p>Note: this is not using any Foundation flexbox-related resources, but
     custom code.</p>
