@@ -3,7 +3,11 @@
  * Page definition default.
  */
 
-
+// Demo mode: keeps the scrollbar on the window, so accordioning experience is
+// smoother.
+//body {
+//  overflow-y: scroll;
+//}
 
 .page__header,
 .page__footer {

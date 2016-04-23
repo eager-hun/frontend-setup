@@ -52,10 +52,16 @@
 
 
 // #############################################################################
-// Layout-fitters.
+// Layout-fitting.
 
-.l-fit {
+.l-fit,
+.page__level > .container {
   @include l-fit;
+
+  & > h2:first-child,
+  & > .h2:first-child {
+    @include line-height-fit($header-lineheight, top, 1);
+  }
 }
 
 

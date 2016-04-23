@@ -63,6 +63,13 @@
 // the page.)
 
 .grid-demos {
+  @include l-fit;
+
+  & > h2:first-child,
+  & > .h2:first-child {
+    @include line-height-fit($header-lineheight, top, 1);
+  }
+
   .row + .row {
     margin-top: 3rem;
   }

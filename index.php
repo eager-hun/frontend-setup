@@ -67,183 +67,73 @@ $page_title = 'Page title';
 
         <div class="page__level">
           <div class="container">
-            <div class="row">
 
-              <!-- Main column. -->
-              <div class="column column--main wide-17 wide-push-7 wide-m-16 wide-m-push-8">
-                <h1 class="page__title"><?php print $page_title; ?></h1>
+            <h2>Feature demos</h2>
 
-                <ul class="accordion" data-accordion>
+            <ul class="accordion" data-accordion>
 
-                  <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">Texts for checking typography</a>
-                    <div class="accordion-content" data-tab-content>
-                      <?php include('sample-contents/sample-texts.php');?>
-                    </div>
-                  </li>
-
-                  <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">Lists for checking typography</a>
-                    <div class="accordion-content" data-tab-content>
-                      <?php include('sample-contents/sample-lists.php');?>
-                    </div>
-                  </li>
-
-                  <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">Sample layouts with grids</a>
-                    <div class="accordion-content" data-tab-content>
-                      <?php include('sample-contents/sample-grid-layouts.php');?>
-                    </div>
-                  </li>
-
-                  <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">On-demand floated- and flexboxified grids</a>
-                    <div class="accordion-content" data-tab-content>
-                      <?php include('sample-contents/on-demand-grids-and-flexboxes.php');?>
-                    </div>
-                  </li>
-
-                  <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">Next thing</a>
-                    <div class="accordion-content" data-tab-content>
-                      This is where the next thing will be able to reside.
-                    </div>
-                  </li>
-                </ul>
-
-              </div><!-- /.column--main -->
-
-              <!-- Sidebar. -->
-              <div class="column column--sidebar wide-7 wide-pull-17 wide-m-pull-17">
-
-                <div class="box">
-                  <div class="box__title">Box title one</div>
-                  <div class="box__content">
-                    <?php include('sample-contents/sample-dropdowns.php');?>
-                    <p>Let us add a little text here, like this one.</p>
-                  </div>
+              <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">Texts for checking typography</a>
+                <div class="accordion-content" data-tab-content>
+                  <?php include('sample-contents/sample-texts.php');?>
                 </div>
+              </li>
 
-                <div class="box">
-                  <div class="box__title">Box title two, and this one is longer</div>
-                  <div class="box__content">
-                    <?php include('sample-contents/placeholder-text-small-amount.php');?>
-                  </div>
+              <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">Lists for checking typography</a>
+                <div class="accordion-content" data-tab-content>
+                  <?php include('sample-contents/sample-lists.php');?>
                 </div>
+              </li>
 
-                <div class="box">
-                  <div class="box__title">Box title three</div>
-                  <div class="box__content">
-                    <?php include('sample-contents/placeholder-text-small-amount.php');?>
-                  </div>
+              <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">Sample layouts with grids</a>
+                <div class="accordion-content" data-tab-content>
+                  <?php include('sample-contents/sample-grid-layouts.php');?>
                 </div>
+              </li>
 
-              </div><!-- /.column--sidebar -->
+              <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">On-demand floated- and flexboxified grids</a>
+                <div class="accordion-content" data-tab-content>
+                  <?php include('sample-contents/on-demand-grids-and-flexboxes.php');?>
+                </div>
+              </li>
 
-            </div>
-          </div>
-        </div><!-- /.page__level -->
+              <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">"Layout 2 sidebars" - a predefined layout set</a>
+                <div class="accordion-content" data-tab-content>
+                  <?php include('sample-contents/layout-2-sidebars.php');?>
+                </div>
+              </li>
 
+              <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">Page example with Foundation grid classes</a>
+                <div class="accordion-content reset" data-tab-content>
+                  <?php include('sample-contents/page-example-with-foundation-classes.php');?>
+                </div>
+              </li>
 
-        <div class="page__level">
-          <div class="container grid-demos">
+              <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">Page example with "Layout 2 sidebars"</a>
+                <div class="accordion-content reset" data-tab-content>
+                  <?php include('sample-contents/page-example-with-layout-2-sidebars.php');?>
+                </div>
+              </li>
 
-            <h2>"Layout two sidebars" variants and states</h2>
-
-            <p>This layout is used (best) for the primary layout of a page.</p>
-
-
-
-            <h3>Variant: content in the middle</h3>
-            <p><code>.layout--2sb.content-in-mid</code></p>
-
-
-
-            <h4>Only one sidebar</h4>
-            <p><code>.layout--2sb.content-in-mid.has-1-sb</code></p>
-
-
-
-            <h5>Only sidebar 1</h5>
-
-            <p><code>.layout--2sb.content-in-mid.has-1-sb.sb-1</code></p>
-
-            <!--
-            CLASSES EXPLAINED:
-            - layout with (potentially) two sidebars;
-            - main content will be in middle, sidebars come up to its sides;
-            - currently only one sidebar is present;
-            - the one present sidebar is sidebar 1.
-            -->
-            <div class="row layout--2sb content-in-mid has-1-sb sb-1">
-
-              <div class="column column--main">
-                <div class="box"><div class="box__content">Main</div></div>
-              </div>
-
-              <div class="column column--sidebar column--sb--1">
-                <div class="box"><div class="box__content">Sidebar 1</div></div>
-              </div>
-
-            </div>
-
-
-
-            <h5>Only sidebar 2</h5>
-
-            <p><code>.layout--2sb.content-in-mid.has-1-sb.sb-2</code></p>
-
-            <!--
-            CLASSES EXPLAINED:
-            - layout with (potentially) two sidebars;
-            - main content will be in middle, sidebars come up to its sides;
-            - currently only one sidebar is present;
-            - the one present sidebar is sidebar 2.
-            -->
-            <div class="row layout--2sb content-in-mid has-1-sb sb-2">
-
-              <div class="column column--main">
-                <div class="box"><div class="box__content">Main</div></div>
-              </div>
-
-              <div class="column column--sidebar column--sb--2">
-                <div class="box"><div class="box__content">Sidebar 2</div></div>
-              </div>
-
-            </div>
-
-
-
-            <h4>Both sidebars</h4>
-
-            <p><code>.layout--2sb.content-in-mid.has-2-sb</code></p>
-
-            <!--
-            CLASSES EXPLAINED:
-            - layout with (potentially) two sidebars;
-            - main content will be in middle, sidebars come up to its sides;
-            - currently both sidebars are present.
-            -->
-            <div class="row layout--2sb content-in-mid has-2-sb">
-
-              <div class="column column--main">
-                <div class="box"><div class="box__content">Main</div></div>
-              </div>
-
-              <div class="column column--sidebar column--sb--1">
-                <div class="box"><div class="box__content">Sidebar 1</div></div>
-              </div>
-
-              <div class="column column--sidebar column--sb--2">
-                <div class="box"><div class="box__content">Sidebar 2</div></div>
-              </div>
-
-            </div>
+              <li class="accordion-item" data-accordion-item>
+                <a href="#" class="accordion-title">Next thing</a>
+                <div class="accordion-content" data-tab-content>
+                  This is where the next thing will be able to reside.
+                </div>
+              </li>
+            </ul>
 
           </div>
         </div><!-- /.page__level -->
 
       </div><!-- /#page__main -->
+
       <div class="footer__room-preserve"></div>
     </div><!-- /#page__wrap -->
 
