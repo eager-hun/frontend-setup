@@ -63,15 +63,19 @@ const browsersync  = require('browser-sync').create();
 
 var paths = {
   web: {
-    toGulpfile: '/frontend-setup'
+    // Use leading slash, but not trailing slash!
+    toDocRoot: '/Anypage',
+    toGulpfile: '/Anypage/frontend-setup'
   },
   source: {
+    // Paths relative to the gulpfile. No trailing slash!
     bower:      'bower_components',
     customLibs: 'source/libs-custom',
     customJs:   'source/js',
     css:        'source/sass'
   },
   dest: {
+    // Paths relative to the gulpfile. No trailing slash!
     css: 'build/css',
     js:  'build/js'
   }
@@ -123,7 +127,7 @@ var options = {
     mangle: false
   },
   browsersync: {
-    proxy: 'http://alpha' + paths.web.toGulpfile,
+    proxy: "http://your-local-environment's-domain" + paths.web.toDocRoot,
     // browser: 'google chrome', // https://www.browsersync.io/docs/options/#option-browser
     online: false,
     notify: false

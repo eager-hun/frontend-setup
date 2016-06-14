@@ -8,7 +8,7 @@
 // Assets-related setup.
 // See http://foundation.zurb.com/sites/docs/installation.html (For 6.1.2).
 
-$base_path        = '/frontend-setup';
+$base_path        = '/Anypage/frontend-setup';
 
 $bower_components = $base_path . '/bower_components';
 $css_location     = $base_path . '/build/css';
