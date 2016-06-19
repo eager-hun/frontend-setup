@@ -29,7 +29,6 @@ $temp-color-prim:              teal;
 $temp-color-accent-1:          goldenrod;
 $temp-color-accent-2:          purple;
 $temp-color-blockfill:         #eee;
-$temp-color-border-base:       #888;
 
 // Color map.
 // In the stylesheets, use only this map to refer to colors. It's awesome power.
@@ -52,9 +51,9 @@ $colors: (
   link-hover:                  $temp-color-prim,
   link-invert:                 mix(white, $temp-color-accent-1, 20%),
   link-invert-visited:         mix(white, $temp-color-accent-1, 20%),
-  border-mid:                  $temp-color-border-base,
-  border-light:                lighten($temp-color-border-base, 10%),
-  border-dark:                 darken($temp-color-border-base, 20%),
+  border-dark:                 #8a8a8a,
+  border-mid:                  #cacaca,
+  border-light:                #e6e6e6,
   minor:                       #777,
   shadow:                      rgba(50, 35, 60, 0.5)
 );

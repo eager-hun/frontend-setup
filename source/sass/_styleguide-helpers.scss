@@ -1,0 +1,54 @@
+/**
+ * @file
+ * Styleguide helpers.
+ */
+
+// ############################################################################
+// Styles for component-demo items' template.
+
+.x-cd-item {
+  padding-top: 3em;
+  padding-bottom: 3em;
+
+  &:first-child {
+    padding-top: 0;
+  }
+  &:last-child {
+    padding-bottom: 0;
+  }
+  .x-cd-item + & {
+    border-top: 1px solid color(border-mid);
+  }
+}
+.x-cd-item {
+  div + div {
+    margin-top: 0.75rem;
+  }
+}
+.x-cd-item__title {
+  font-size: 1.5rem;
+}
+.x-cd-item__description {
+  color: slategray;
+  font-size: 0.9rem;
+  font-style: italic;
+
+  p {
+    line-height: 1.35;
+    margin: 0.5em 0;
+  }
+}
+.x-cd-item__label {
+  display: block;
+  margin: 1rem 0;
+  font-style: italic;
+  font-weight: 700;
+}
+.x-cd-item__code {
+  pre {
+    background: whitesmoke;
+    border: 1px solid lightgray;
+    padding: 2rem;
+  }
+}
+
