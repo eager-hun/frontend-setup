@@ -64,8 +64,8 @@ const browsersync  = require('browser-sync').create();
 var paths = {
   web: {
     // Use leading slash, but not trailing slash!
-    toDocRoot: '/Anypage',
-    toGulpfile: '/Anypage/frontend-setup'
+    toDocRoot: '/anypage',
+    toGulpfile: '/anypage/frontend-setup'
   },
   source: {
     // Paths relative to the gulpfile. No trailing slash!
