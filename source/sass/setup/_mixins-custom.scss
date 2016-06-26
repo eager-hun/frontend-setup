@@ -255,10 +255,10 @@
   }
   @include breakpoint(wide-m) {
     padding-top: 0;
-    padding-bottom: map-get($visual-width-of-1-column, wide-m);
+    padding-bottom: map-get($visual-width-of-1-column, wide-m) * 0.5;
   }
   @include breakpoint(wide-l) {
-    padding-bottom: map-get($visual-width-of-1-column, widest);
+    padding-bottom: map-get($visual-width-of-1-column, widest) * 0.5;
   }
 }
 

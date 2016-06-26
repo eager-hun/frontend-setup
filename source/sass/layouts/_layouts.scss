@@ -92,21 +92,21 @@
 }
 @include breakpoint(wide-m) {
   .page__level {
-    $gap: map-get($visual-width-of-1-column, wide-m);
+    $gap: map-get($visual-width-of-1-column, wide-m) * 0.5;
     padding-top: rem-calc($gap);
     padding-bottom: rem-calc($gap);
   }
 }
 @include breakpoint(wide-l) {
   .page__level {
-    $gap: map-get($visual-width-of-1-column, wide-l);
+    $gap: map-get($visual-width-of-1-column, wide-l) * 0.5;
     padding-top: rem-calc($gap);
     padding-bottom: rem-calc($gap);
   }
 }
 @include breakpoint(widest) {
   .page__level {
-    $gap: map-get($visual-width-of-1-column, widest);
+    $gap: map-get($visual-width-of-1-column, widest) * 0.5;
     padding-top: rem-calc($gap);
     padding-bottom: rem-calc($gap);
   }
@@ -121,3 +121,4 @@
     @include vertical-whitespace();
   }
 }
+

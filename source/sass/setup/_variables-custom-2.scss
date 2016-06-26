@@ -24,6 +24,10 @@ $line-height-condensed: $global-lineheight*0.9;
 
 $page-min-width: 300px;
 
+// NOTE: this one-column-based spacing things seemed a good idea while we had
+// a 24 col grid globally.
+// Now however (12 col globally, yet some cardinally important layouts use 24
+// col) this concept seems to become a challenge.
 $visual-width-of-1-column: (
   'wide-m': rem-calc(map-get($breakpoints, wide-m)/$grid-column-count) + map-get($grid-column-responsive-gutter, wide),
   'wide-l': rem-calc(map-get($breakpoints, wide-l)/$grid-column-count) + map-get($grid-column-responsive-gutter, wide),
@@ -33,7 +37,8 @@ $visual-width-of-1-column: (
 $vertical-whitespaces: (
   narrow: map-get($grid-column-responsive-gutter, narrow)*0.5,
   wide:   map-get($grid-column-responsive-gutter, wide),
-  wide-m: map-get($visual-width-of-1-column, wide-m)*0.5,
-  wide-l: map-get($visual-width-of-1-column, wide-l)*0.5,
-  widest: map-get($visual-width-of-1-column, widest)*0.5
+  wide-m: map-get($visual-width-of-1-column, wide-m)*0.25,
+  wide-l: map-get($visual-width-of-1-column, wide-l)*0.25,
+  widest: map-get($visual-width-of-1-column, widest)*0.25
 );
+
