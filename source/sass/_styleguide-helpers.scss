@@ -49,6 +49,12 @@
     background: whitesmoke;
     border: 1px solid lightgray;
     padding: 2rem;
+
+    code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
   }
 }
 
