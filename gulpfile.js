@@ -50,7 +50,6 @@ const uglify       = require('gulp-uglify');
 const rename       = require('gulp-rename');
 const concat       = require('gulp-concat');
 const del          = require('del');
-const order        = require('gulp-order');
 const browsersync  = require('browser-sync').create();
 // const plumber      = require('gulp-plumber');
 
@@ -92,7 +91,7 @@ var options = {
   // Cleaning deletes earlier instances of built files before writing new ones.
   cleaning: {
     enabled: true,
-    verbose: false,
+    verbose: true,
     delOpts: {
       dryrun: false
     }
@@ -149,6 +148,9 @@ var jsBundles = {
   framework: {
     filename: 'foundation'
   },
+  styleguide: {
+    filename: 'styleguide'
+  },
   custom: {
     filename: 'custom'
   }
@@ -156,7 +158,6 @@ var jsBundles = {
 
 // -----------------------------------------------------------------------------
 // Libraries.
-// Provide full paths (relative to gulpfile.js) along with the filenames.
 
 jsBundles.libs.files = [
   paths.source.bower + '/jquery/dist/jquery.js'
@@ -168,7 +169,6 @@ if (options.modernizr) {
 
 // -----------------------------------------------------------------------------
 // Framework JS files.
-// Provide full paths (relative to gulpfile.js) along with the filenames.
 
 paths.source.frameworkJs = paths.source.bower + '/foundation-sites/js';
 
@@ -182,6 +182,21 @@ jsBundles.framework.files = [
   paths.source.frameworkJs + '/foundation.accordion.js'
 ];
 
+// -----------------------------------------------------------------------------
+// JS files needed only by the styleguide.
+
+jsBundles.styleguide.files = [
+
+];
+
+// -----------------------------------------------------------------------------
+// Custom JS files.
+
+jsBundles.custom.files = [
+  paths.source.customJs + '/custom-script-1.js',
+  paths.source.customJs + '/custom-script-2.js'
+];
+
 
 // #############################################################################
 // Tasks and their helpers.
@@ -189,7 +204,7 @@ jsBundles.framework.files = [
 // -----------------------------------------------------------------------------
 // CLEANING UP old files before saving new ones.
 
-var announceCleaning = function announceCleaning(paths) {
+var announceCleaning = function (paths) {
   if (paths.length > 0) {
     if (options.cleaning.delOpts.dryrun) {
       console.log('Files and folders that would be deleted:');
@@ -202,6 +217,19 @@ var announceCleaning = function announceCleaning(paths) {
   }
 };
 
+var cleanBuiltJsBundle = function (bundleName) {
+  if (options.cleaning.enabled) {
+    var globs = [
+      paths.dest.js + '/' + jsBundles[bundleName].filename + '.js',
+      paths.dest.js + '/' + jsBundles[bundleName].filename + '.min.js',
+      paths.dest.js + '/sourcemaps/' + jsBundles[bundleName].filename + '.js.map',
+      paths.dest.js + '/sourcemaps/' + jsBundles[bundleName].filename + '.min.js.map'
+    ];
+    del(globs, options.cleaning.delOpts)
+      .then(announceCleaning);
+  }
+};
+
 gulp.task('clean-css', function () {
   if (options.cleaning.enabled) {
     del([paths.dest.css + '/*'], options.cleaning.delOpts)
@@ -210,42 +238,19 @@ gulp.task('clean-css', function () {
 });
 
 gulp.task('clean-js-libs', function () {
-  if (options.cleaning.enabled) {
-    var globs = [
-      paths.dest.js + '/' + jsBundles.libs.filename + '.js',
-      paths.dest.js + '/' + jsBundles.libs.filename + '.min.js',
-      paths.dest.js + '/sourcemaps/' + jsBundles.libs.filename + '.js.map',
-      paths.dest.js + '/sourcemaps/' + jsBundles.libs.filename + '.min.js.map'
-    ];
-    del(globs, options.cleaning.delOpts)
-      .then(announceCleaning);
-  }
+  cleanBuiltJsBundle('libs');
 });
 
 gulp.task('clean-framework-js', function () {
-  if (options.cleaning.enabled) {
-    var globs = [
-      paths.dest.js + '/' + jsBundles.framework.filename + '.js',
-      paths.dest.js + '/' + jsBundles.framework.filename + '.min.js',
-      paths.dest.js + '/sourcemaps/' + jsBundles.framework.filename + '.js.map',
-      paths.dest.js + '/sourcemaps/' + jsBundles.framework.filename + '.min.js.map'
-    ];
-    del(globs, options.cleaning.delOpts)
-      .then(announceCleaning);
-  }
+  cleanBuiltJsBundle('framework');
 });
 
+//gulp.task('clean-styleguide-js', function () {
+//  cleanBuiltJsBundle('styleguide');
+//});
+
 gulp.task('clean-custom-js', function () {
-  if (options.cleaning.enabled) {
-    var globs = [
-      paths.dest.js + '/' + jsBundles.custom.filename + '.js',
-      paths.dest.js + '/' + jsBundles.custom.filename + '.min.js',
-      paths.dest.js + '/sourcemaps/' + jsBundles.custom.filename + '.js.map',
-      paths.dest.js + '/sourcemaps/' + jsBundles.custom.filename + '.min.js.map'
-    ];
-    del(globs, options.cleaning.delOpts)
-      .then(announceCleaning);
-  }
+  cleanBuiltJsBundle('custom');
 });
 
 // -----------------------------------------------------------------------------
@@ -265,56 +270,40 @@ gulp.task('compile-css', ['clean-css'], function () {
 // -----------------------------------------------------------------------------
 // COMPILING JS LIBS AND FRAMEWORK JS BUNDLES.
 
-// NOTE: there is no watcher for these, if you add or remove libraries or
-// framework js files, you need to relaunch gulp.
+// NOTE: there is a watcher set up only for the "custom" js bundle; if you add
+// or remove libraries or framework js files, you need to relaunch gulp.
 
-// WARNING: are we guaranteed to get back the components in the concatenated
-// file in the same order they were passed in?
+var compileJsBundle = function (bundleName) {
 
-// Related: https://github.com/gulpjs/gulp/issues/687
-// Related: http://stackoverflow.com/questions/28486866/gulp-src-using-sync-globbing
-// Also, using order() here only made things worse.
+  // TODO: check for files length first.
 
-gulp.task('compile-js-libs', ['clean-js-libs'], function() {
-  return gulp.src(jsBundles.libs.files)
+  return gulp.src(jsBundles[bundleName].files)
     .pipe(sourcemaps.init())
-    .pipe(concat(jsBundles.libs.filename + '.js', {newLine: "\n;"}))
+    .pipe(concat(jsBundles[bundleName].filename + '.js', {newLine: "\n;"}))
     .pipe(gulp.dest(paths.dest.js))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify(options.uglify))
     .pipe(sourcemaps.write('./sourcemaps', options.sourcemaps.js))
     .pipe(gulp.dest(paths.dest.js));
+};
+
+gulp.task('compile-js-libs', ['clean-js-libs'], function() {
+  return compileJsBundle('libs');
 });
 
 gulp.task('compile-framework-js', ['clean-framework-js'], function() {
-  return gulp.src(jsBundles.framework.files)
-    .pipe(sourcemaps.init())
-    .pipe(concat(jsBundles.framework.filename + '.js', {newLine: "\n;"}))
-    .pipe(gulp.dest(paths.dest.js))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify(options.uglify))
-    .pipe(sourcemaps.write('./sourcemaps', options.sourcemaps.js))
-    .pipe(gulp.dest(paths.dest.js));
+  return compileJsBundle('framework');
 });
+
+//gulp.task('compile-styleguide-js', ['clean-styleguide-js'], function() {
+//  return compileJsBundle('styleguide');
+//});
 
 // -----------------------------------------------------------------------------
 // COMPILING CUSTOM JS.
 
 gulp.task('compile-custom-js', ['clean-custom-js'], function() {
-
-  // NOTICE: we may need to define custom order of these files, as some of them
-  // may depend on another one(s).
-
-  // If we provide only a subset of the existing files for order(), it seems
-  // that they will be ordered as such at the beginning of the concatenated
-  // file, then the rest of the files will follow in abc-order.
-  var jsFilesOrder = [
-    'custom-script-3.js',
-    'custom-script-2.js'
-  ];
-
-  return gulp.src(paths.source.customJs + '/*.js')
-    .pipe(order(jsFilesOrder))
+  return gulp.src(jsBundles.custom.files)
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(sourcemaps.init())

@@ -3,7 +3,7 @@
  * Script No 2.
  */
 
-(function (window, document, undefined) {
+(function ($, window, document, undefined) {
   "use strict";
 
 
@@ -17,10 +17,4 @@
   var logMsg = 'Custom script 2.';
   console.log(logMsg);
 
-
-  // ###########################################################################
-  // Stuff.
-
-  console.log(window.stuff + ', also, this is coming from script 2.');
-
-})(this, this.document);
+})(jQuery, this, this.document);
