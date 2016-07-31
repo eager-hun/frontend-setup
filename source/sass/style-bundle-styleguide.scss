@@ -8,5 +8,10 @@
 @import "setup/variables-custom-2"; // Must be AFTER foundation-vars!
 @import "setup/mixins-custom";
 
+// Importing prism.css.
+// Note: "paths.source.bower + '/prism/themes'" had been added to sass
+// includePaths in the gulpfile.js.
+@import "prism";
+
 @import "styleguide-helpers";
 

@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "foundation-sites": "6.1.2",
-    "normalize-css": "normalize.css#^3.0.3"
+    "normalize-css": "normalize.css#^3.0.3",
+    "prism": "https://github.com/PrismJS/prism.git#1.5.1"
   }
 }

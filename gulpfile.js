@@ -103,7 +103,8 @@ var options = {
     // nested || expanded || compact || compressed
     outputStyle: 'expanded',
     includePaths: [
-      paths.source.bower + '/foundation-sites/scss'
+      paths.source.bower + '/foundation-sites/scss',
+      paths.source.bower + '/prism/themes'
     ]
   },
   autoprefixer: {
@@ -186,7 +187,7 @@ jsBundles.framework.files = [
 // JS files needed only by the styleguide.
 
 jsBundles.styleguide.files = [
-
+  paths.source.bower + '/prism/prism.js'
 ];
 
 // -----------------------------------------------------------------------------
@@ -245,9 +246,9 @@ gulp.task('clean-framework-js', function () {
   cleanBuiltJsBundle('framework');
 });
 
-//gulp.task('clean-styleguide-js', function () {
-//  cleanBuiltJsBundle('styleguide');
-//});
+gulp.task('clean-styleguide-js', function () {
+  cleanBuiltJsBundle('styleguide');
+});
 
 gulp.task('clean-custom-js', function () {
   cleanBuiltJsBundle('custom');
@@ -295,9 +296,9 @@ gulp.task('compile-framework-js', ['clean-framework-js'], function() {
   return compileJsBundle('framework');
 });
 
-//gulp.task('compile-styleguide-js', ['clean-styleguide-js'], function() {
-//  return compileJsBundle('styleguide');
-//});
+gulp.task('compile-styleguide-js', ['clean-styleguide-js'], function() {
+  return compileJsBundle('styleguide');
+});
 
 // -----------------------------------------------------------------------------
 // COMPILING CUSTOM JS.
@@ -328,7 +329,7 @@ var watcherAnnounce = function watcherAnnounce(event) {
 gulp.task('reload-at-css', ['compile-css'], browsersync.reload);
 gulp.task('reload-at-custom-js', ['compile-custom-js'], browsersync.reload);
 
-gulp.task('serve', ['compile-css', 'compile-js-libs', 'compile-framework-js', 'compile-custom-js'], function() {
+gulp.task('serve', ['compile-css', 'compile-js-libs', 'compile-framework-js', 'compile-styleguide-js', 'compile-custom-js'], function() {
   browsersync.init(options.browsersync);
 
   // See https://www.browsersync.io/docs/gulp/#gulp-reload
