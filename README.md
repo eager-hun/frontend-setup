@@ -2,15 +2,18 @@ Frontend build setup study.
 
 Keywords: Foundation, Gulp, Browsersync.
 
-## Installing
+**Note:**
 
-This project has been made a submodule of the ["Anypage"][Anypage] project, and
-the default configuration is now expecting that this project is accessed via
-Anypage as a wrapper around it.
+This project has been made a submodule of the "[anypage][anypage]" project, and
+it is now expected that this project is accessed via "anypage" as a wrapper
+around it.
 
-1. Edit project-related config (mainly locations) in `index.php` and in
-  `gulpfile.js`. (If you are not using the "Anypage" project as a wrapper,
-  there will be a little more to edit in gulpfile.js.)
+Sample contents can be accessed and developed by using this project together
+with the "anypage" project.
+
+## Installing external packages and building assets
+
+1. Edit project-related config in `gulpfile.js`.
 2. Then in cli:
 
         $ bower install
@@ -34,5 +37,4 @@ added.
       Windows machines; see: http://stackoverflow.com/q/28175200
 
 
-[Anypage]: https://github.com/eager-hun/Anypage
-
+[anypage]: https://github.com/eager-hun/anypage
