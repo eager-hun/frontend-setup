@@ -87,7 +87,7 @@
 // Passes control of providing whitespace between groups of contents to
 // containing elements (e.g. layouts), by removing possibly disruptive margins
 // from the children.
-@mixin l-fit {
+@mixin fit-content {
   & > *:first-child {
     margin-top: 0;
   }
@@ -96,30 +96,70 @@
   }
 }
 
-@mixin vertical-whitespace($apply: margin-bottom) {
-
-  @each $breakpoint, $value in $vertical-whitespaces {
+@mixin vertical-gap($implemented_as: margin, $which: both, $size: 1) {
+  @each $breakpoint, $gap in $vertical-gap-values {
     @include breakpoint($breakpoint) {
-      @if $apply == (margin-bottom) {
-        margin-bottom: $value;
+      @if $which == (both) {
+        #{$implemented_as}-top: $gap * $size;
+        #{$implemented_as}-bottom: $gap * $size;
       }
-      @else if $apply == (paddings) {
-        padding-top: $value;
-        padding-bottom: $value;
+      @else {
+        #{$implemented_as}-#{$which}: $gap * $size;
       }
-    }
-  }
-
-  @if $apply == (margin-bottom) {
-    &:last-child {
-      margin-bottom: 0;
     }
   }
 }
 
+// Apply on .row's.
+@mixin flexboxify-floated-grid($payload-selector: '.box') {
+  .mdz-flexbox & {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    & > .column {
+      display: flex;
+      flex: 0 1 auto;
+      float: none;
+
+      & > #{$payload-selector} {
+        flex: 0 1 auto;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
 
 // #############################################################################
 // Typography.
+
+/**
+ * Offsets text-containing elements so that texts align better to bounding box.
+ *
+ * @param $line-height
+ *   The prevailing line-height in the current DOM-subtree.
+ * @param $pos
+ *   Position, either `top` or `bottom`.
+ * @param $correction
+ *   Number, allows for custom adjustments, which might be neccessary,
+ *   depending on the characteristics of the actual font being used.
+ */
+@mixin line-height-fit($line-height, $pos, $correction: 0, $font-size: 1em) {
+  // Take the part of line-height that's above 1, half it (as it is distributed
+  // on the top and the bottom), apply correction, then add an em unit on it.
+  $offset: ($line-height - 1)*0.5*(1+$correction);
+  $offset-w-unit: $offset * $font-size;
+  margin-#{$pos}: -$offset-w-unit;
+}
+
+// ----------------------------------------------------------------------------
+// Headings and pseudo-headings.
 
 @mixin pseudo-heading-base {
   // These things come straight from
@@ -143,14 +183,14 @@
 }
 
 /**
- * Applies top-and bottom margins, based on a selected heading variant.
+ * Applies such properties that are unique to the chosen heading variant.
  *
- * Also, this is the place where these numbers are defined.
+ * Also, this is the place where top- and bottom whitespaces are defined.
  *
  * @param $heading
  *   The html selector of the to-be-mimicked heading: e.g. h1, h2, etc.
  */
-@mixin heading-whitespaces($heading) {
+@mixin heading-specifics($heading) {
 
   $heading-margin-bottom-modifier: 0.75;
 
@@ -181,7 +221,7 @@
 }
 
 /**
- * Applies font-size, based on a selected heading variant.
+ * Applies font-size and other specifics on a selected heading variant.
  *
  * @param $heading
  *   The html selector of the to-be-mimicked heading: e.g. h1, h2, etc.
@@ -196,76 +236,45 @@
       font-size: rem-calc(map-get($size-defs, $heading));
     }
   }
-  @include heading-whitespaces($heading);
-}
 
-/**
- * Offsets text-containing elements so that texts align better to bounding box.
- *
- * @param $line-height
- *   The prevailing line-height in the current DOM-subtree.
- * @param $pos
- *   Position, either `top` or `bottom`.
- * @param $correction
- *   Number, allows for custom adjustments, which might be neccessary,
- *   depending on the characteristics of the actual font being used.
- */
-@mixin line-height-fit($line-height, $pos, $correction: 0) {
-  // Take the part of line-height that's above 1, half it (as it is distributed
-  // on the top and the bottom), apply correction, then add an em unit on it.
-  $offset: ($line-height - 1)*0.5*(1+$correction);
-  $offset-w-unit: $offset * 1em;
-  margin-#{$pos}: -$offset-w-unit;
-
-  @if $pos == (top) {
-    .natural-fit:first-child {
-      margin-top: $offset-w-unit;
-    }
-  }
-  @else if $pos == (bottom) {
-    .natural-fit:last-child {
-      margin-bottom: $offset-w-unit;
-    }
-  }
+  @include heading-specifics($heading);
 }
 
 @mixin page-title-appearance {
   @include pseudo-heading-base;
   @include pseudo-heading(h1);
 
-  margin-top: map-get($grid-column-responsive-gutter, narrow)* 0.5 * -1;
-  margin-bottom: 0;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  @include line-height-fit($header-lineheight, top, 1);
 
-  @include breakpoint(wide) {
-    @include line-height-fit($header-lineheight, top, 1.15);
-    @include line-height-fit($header-lineheight, bottom, 1.15);
+  // And this is the hackest hack in the recent history of hacks.
+  &::after {
+    @include line-height-fit($header-lineheight, top, 1);
+    @include vertical-gap(margin, bottom);
 
-    padding-bottom: 1.25em;
-
-    // NOTE: these are classes in the .layout--2sb setup.
-    .has-no-sb > .column > & {
-      margin-top: map-get($grid-column-responsive-gutter, wide) * -1;
-    }
-    .has-1-sb &,
-    .has-2-sb & {
-      padding-top: 0;
-    }
+    content: '';
+    display: block;
+    height: 0;
   }
-  @include breakpoint(wide-m) {
-    padding-top: 0;
-    padding-bottom: map-get($visual-width-of-1-column, wide-m) * 0.5;
-  }
-  @include breakpoint(wide-l) {
-    padding-bottom: map-get($visual-width-of-1-column, widest) * 0.5;
+  &:only-child::after {
+    margin: 0;
   }
 }
 
 @mixin box-title-appearance {
   @include pseudo-heading-base;
   @include pseudo-heading(h4);
+
   @include line-height-fit($header-lineheight, top, 1);
+}
+
+@mixin description-appearance {
+  font-size: 0.9rem;
+  font-style: italic;
+
+  p {
+    line-height: 1.35;
+    margin: 0.5em 0;
+  }
 }
 
 

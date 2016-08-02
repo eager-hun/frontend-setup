@@ -1,0 +1,39 @@
+/**
+ * @file
+ * Components - custom ones.
+ */
+
+
+// #############################################################################
+// Boxes.
+
+.box {
+  background: color(blockfill);
+  padding: $global-padding;
+}
+.box__title {
+  @include box-title-appearance;
+
+  margin-bottom: $global-margin;
+}
+.box__content {
+  @include fit-content;
+  @include line-height-fit($global-lineheight, bottom);
+
+  // If there is no box title.
+  &:first-child {
+    @include line-height-fit($global-lineheight, top);
+  }
+}
+
+.column--sidebar {
+  .box {
+    &,
+    & p {
+      line-height: $line-height-condensed;
+    }
+  }
+  .box__content {
+    @include line-height-fit($line-height-condensed, bottom);
+  }
+}

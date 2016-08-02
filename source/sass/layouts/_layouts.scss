@@ -5,58 +5,11 @@
 
 
 // #############################################################################
-// Grid hack to make Foundation's grid work like Bootstrap's.
-
-// I found the base for this mixin in
-// bower_components/foundation-sites/scss/grid/_column.scss.
-// $grid-column-responsive-gutter can be found and set in
-// ./_sass-foundation-variables.scss.
-@mixin container-paddings {
-  @each $breakpoint, $gutter in $grid-column-responsive-gutter {
-    $padding: rem-calc($gutter) / 2;
-
-    @include breakpoint($breakpoint) {
-      padding-left: $padding;
-      padding-right: $padding;
-    }
-  }
-}
-
-.container {
-  @include container-paddings;
-
-  margin-left: auto;
-  margin-right: auto;
-  max-width: $global-width;
-}
-
-.row {
-  @include grid-row-nest;
-
-  max-width: none;
-}
-
-
-// #############################################################################
-// Further options to override Foundation grid.
-
-// Disabling the last-column-being-floated-to-the-opposite-direction by adding
-// .row--wrap class to the row.
-// NOTE: overspecified selector to win over Foundation generated styles.
-.row.row--wrap {
-  .column:last-child:not(:first-child),
-  .columns:last-child:not(:first-child) {
-    float: left;
-  }
-}
-
-
-// #############################################################################
 // Layout-fitting.
 
-.l-fit,
+.fit-content,
 .page__level > .container {
-  @include l-fit;
+  @include fit-content;
 
   & > h2:first-child,
   & > .h2:first-child {
@@ -71,45 +24,11 @@
 // page.)
 
 .page__level {
-  $level-vertical-padding: map-get($grid-column-responsive-gutter, narrow)*0.5;
-  padding-top: rem-calc($level-vertical-padding);
-  padding-bottom: rem-calc($level-vertical-padding);
+  @include vertical-gap(padding, both, 1);
 }
 
 .container {
   min-width: $page-min-width;
-}
-
-// -----------------------------------------------------------------------------
-// Growing screens
-
-@include breakpoint(wide) {
-  .page__level {
-    $gap: map-get($grid-column-responsive-gutter, wide);
-    padding-top: rem-calc($gap);
-    padding-bottom: rem-calc($gap);
-  }
-}
-@include breakpoint(wide-m) {
-  .page__level {
-    $gap: map-get($visual-width-of-1-column, wide-m) * 0.5;
-    padding-top: rem-calc($gap);
-    padding-bottom: rem-calc($gap);
-  }
-}
-@include breakpoint(wide-l) {
-  .page__level {
-    $gap: map-get($visual-width-of-1-column, wide-l) * 0.5;
-    padding-top: rem-calc($gap);
-    padding-bottom: rem-calc($gap);
-  }
-}
-@include breakpoint(widest) {
-  .page__level {
-    $gap: map-get($visual-width-of-1-column, widest) * 0.5;
-    padding-top: rem-calc($gap);
-    padding-bottom: rem-calc($gap);
-  }
 }
 
 
@@ -117,8 +36,8 @@
 // Box arrangements.
 
 .column {
-  .box {
-    @include vertical-whitespace();
+  .box + .box {
+    @include vertical-gap(margin, top, 0.5);
   }
 }
 

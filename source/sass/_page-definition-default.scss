@@ -17,10 +17,12 @@
 
 .page__header,
 .page__footer {
+  @include vertical-gap(padding, both, 0.75);
   @include text-color-invert-zone;
 
-  padding-top: $global-margin*2;
-  padding-bottom: $global-margin*2;
+  a {
+    @include override-link-color($color: color(link-invert));
+  }
 }
 .page__header {
   background: color(prim);
@@ -30,8 +32,6 @@
 }
 
 .header__site-name {
-  @include override-link-color($color: color(link-invert));
-
   font-weight: 700;
 }
 
@@ -39,10 +39,12 @@
   @include page-title-appearance;
 }
 
+
 // #############################################################################
 // Sticky footer.
 
-$footer-height: 120px;
+$footer-height: 150px;
+
 html,
 body {
   height: 100%;

@@ -14,40 +14,12 @@
 /**
  * New whitespaces for headings + font sizes & whitespaces for pseudo-headings.
  *
- * Outputs a pattern for each heading like:
- *
- * @code
- *     h1 {
- *
- *       // This is a correction, an after-effect for regular headings;
- *       // Their other styles are being sorted out by Foundation.
- *
- *       ... margin top and bottom;
- *     }
- *
- *     // Pseudo-headings get their collective/shared styling from the
- *     // .pseudo-heading class.
- *
- *     // Here we apply only such additional styles that are tied to the actual
- *     // heading size variant.
- *
- *     .h1 {
- *       ... font-size;
- *       ... margin top and bottom;
- *     }
- *     @media screen and (min-width: some-width) {
- *       .h1 {
- *         ... updated font-size;
- *       }
- *     }
- * @endcode
- *
  * This allows any element to be formatted as a heading, e.g.:
  * span.pseudo-heading.h4
  */
 @for $i from 1 through 6 {
   h#{$i} {
-    @include heading-whitespaces(h#{$i});
+    @include heading-specifics(h#{$i});
   }
   .h#{$i} {
     @include pseudo-heading(h#{$i});
@@ -74,4 +46,14 @@ a {
   &:focus {
     outline: 1px dotted color(link);
   }
+}
+
+
+// #############################################################################
+// Stuffs.
+
+p {
+  // I know that Foundation does 0 top- and some bottom margin for paragraphs,
+  // but I don't like that.
+  margin: 1rem 0;
 }

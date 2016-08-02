@@ -7,47 +7,49 @@
 // Styles for component-demo items' template.
 
 .x-cd-item {
-  padding-top: 3em;
-  padding-bottom: 3em;
+  @include vertical-gap($implemented_as: padding, $which: both, $size: 1);
 
   &:first-child {
     padding-top: 0;
   }
-  &:last-child {
-    padding-bottom: 0;
-  }
-  .x-cd-item + & {
-    border-top: 1px solid color(border-mid);
-  }
-}
-.x-cd-item {
-  & > div + div {
-    margin-top: 0.75rem;
+
+  &:nth-child(even) {
+    background: whitesmoke;
+
+    .x-cd-item__code pre {
+      background: white;
+    }
   }
 }
+
 .x-cd-item__title {
   @include line-height-fit($line-height: $header-lineheight, $pos: top, $correction: 1);
 }
-.x-cd-item__description {
-  color: slategray;
-  font-size: 0.9rem;
-  font-style: italic;
 
-  p {
-    line-height: 1.35;
-    margin: 0.5em 0;
+.x-cd-item__content {
+  .cd-item-content-extra-room & {
+    margin: 5rem 0;
   }
 }
-.x-cd-item__label {
-  display: block;
-  margin: 1rem 0;
-  font-style: italic;
-  font-weight: 700;
+
+.x-cd-item__description {
+  .element__content {
+    @include description-appearance;
+  }
 }
+
+.x-cd-item {
+  .element__label {
+    display: block;
+    margin: 1rem 0;
+    font-style: italic;
+    font-weight: 700;
+  }
+}
+
 .x-cd-item__code {
   pre {
     background: whitesmoke;
-    border: 1px solid lightgray;
     padding: 2rem;
 
     code {
@@ -58,3 +60,56 @@
   }
 }
 
+
+// #############################################################################
+// Grid-demos.
+
+// (These rules don't establish grids, don't even modify them, they just make
+// items more visually identifiable; like the grid-demos part is a component on
+// the page.)
+
+.grid-demos {
+  @include fit-content;
+
+  .row + .row {
+    margin-top: 3rem;
+  }
+  .row + p {
+    margin-top: 2.5rem;
+  }
+  p + .row {
+    margin-top: 1.5rem;
+  }
+
+  .box {
+    background: color(blockfill);
+
+    .x-cd-item:nth-child(even) & {
+      background: white;
+    }
+
+    &,
+    & p {
+      line-height: 1;
+    }
+  }
+  .box__content {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  code {
+    background: none;
+    border: none;
+    color: color(minor);
+    padding: 0;
+  }
+
+  &.l-2sb-demo {
+    .column--sb--1 .box {
+      background: desaturate(pink, 10%);
+    }
+    .column--sb--2 .box {
+      background: desaturate(palegreen, 10%);
+    }
+  }
+}

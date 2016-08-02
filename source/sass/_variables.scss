@@ -1,15 +1,86 @@
-/**
- * @file
- * Foundation vars.
- *
- * NOTE:
- * This file is a copy of
- * [bower_dir]/foundation-sites/scss/settings/settings.scss
- * ("foundation-sites": "6.1.2"), and this is the one being used instead of that
- * one.
- *
- * This is now the place to edit/customize all the Foundation variables.
- */
+
+// #############################################################################
+// CUSTOM VARIABLES 1.
+
+// Place for such variables that can be used to pass on to Foundation vars
+// below.
+
+// -----------------------------------------------------------------------------
+// Layout.
+
+$page-min-width: 300px;
+
+
+// -----------------------------------------------------------------------------
+// Colors.
+
+// @see
+// http://html-color-codes.info/color-names/
+// https://color.adobe.com/create/color-wheel/
+// http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
+// http://webdesign.tutsplus.com/tutorials/all-you-ever-need-to-know-about-sass-interpolation--cms-21375
+
+// NOTE: Temp-colors are just a helper stage to set up the base colors in the
+// color-map below.
+
+$temp-color-prim:              teal;
+$temp-color-accent-1:          goldenrod;
+$temp-color-accent-2:          purple;
+$temp-color-blockfill:         #eee;
+
+// Color map.
+// In the stylesheets, use only this map to refer to colors. It's awesome power.
+// In SASS, only with this one can you have 'variable variable names'.
+// NOTE: there is a debug-map() function in the _mixins-custom.scss file.
+
+$colors: (
+  prim:                        $temp-color-prim,
+  accent-1:                    $temp-color-accent-1,
+  accent-2:                    $temp-color-accent-2,
+  nav:                         $temp-color-prim,
+  text:                        #333,
+  text-invert:                 white,
+  bg-light:                    white,
+  bg:                          $temp-color-blockfill,
+  bg-dark:                     #333,
+  blockfill:                   $temp-color-blockfill,
+  link:                        $temp-color-prim,
+  link-visited:                desaturate(lighten(purple, 25%), 75%),
+  link-hover:                  $temp-color-prim,
+  link-invert:                 mix(white, $temp-color-accent-1, 20%),
+  link-invert-visited:         mix(white, $temp-color-accent-1, 20%),
+  border-dark:                 #8a8a8a,
+  border-mid:                  #cacaca,
+  border-light:                #e6e6e6,
+  minor:                       #777,
+  shadow:                      rgba(50, 35, 60, 0.5)
+);
+
+// Color retriever function. Usage example:
+// .foo { background: color(bar); }
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+// -----------------------------------------------------------------------------
+// Effects.
+
+$transition-speed-fast: 125ms;
+$transition-speed-mid:  250ms;
+$transition-speed-slow: 700ms;
+
+
+// #############################################################################
+// FOUNDATION VARIABLES.
+
+// NOTE:
+// This is the content of
+// [bower_dir]/foundation-sites/scss/settings/settings.scss
+// ("foundation-sites": "6.1.2"), and these are all the settings that are being
+// used.
+
+// This is now the place to edit/customize all the Foundation variables.
+
 
 
 //  Foundation for Sites Settings
@@ -577,3 +648,23 @@ $topbar-background: $light-gray;
 $topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;
 
+
+// #############################################################################
+// CUSTOM VARIABLES 2.
+
+// Such variables that might use some of the variables that were established for
+// Foundation, above.
+
+// -----------------------------------------------------------------------------
+// Typography.
+
+$line-height-condensed: $global-lineheight*0.9;
+
+// -----------------------------------------------------------------------------
+// Layout.
+
+$vertical-gap-values: (
+  narrow: 2rem,
+  wide: rem-calc(map-get($breakpoints, wide-m)/24) + rem-calc(map-get($grid-column-responsive-gutter, wide)),
+  widest: rem-calc($global-width/24 + map-get($grid-column-responsive-gutter, wide))
+);

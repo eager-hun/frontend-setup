@@ -5,17 +5,16 @@
  * Used for stitching the partials together.
  */
 
-@import "setup/variables-custom-1"; // Must be BEFORE foundation-vars!
-@import "setup/variables-foundation";
-@import "setup/variables-custom-2"; // Must be AFTER foundation-vars!
-@import "setup/mixins-custom";
+@import "variables";
+@import "mixins-custom";
 
 @import "global";    // Grid mixins will need the vars that are in this.
 @import "grid/grid"; // We'll need the grid mixins that are in this.
 
+@import "foundation-overrides";
 @import "base";
 @import "layouts/layouts";
 @import "layouts/on-demand-grids";
 @import "page-definition-default";
-@import "components-foundation";
-@import "components-custom";
+@import "components/components-foundation";
+@import "components/components-custom";
