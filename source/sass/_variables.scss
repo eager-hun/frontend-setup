@@ -663,6 +663,15 @@ $line-height-condensed: $global-lineheight*0.9;
 // -----------------------------------------------------------------------------
 // Layout.
 
+// Attempts to provide a value that is approximately equal to the visual width
+// of one column on a 24 (!) column grid at the given screen-width.
+//
+// Works well at exactly 'wide-m' breakpoint and on screens >= 'widest'; in the
+// rest of the cases it's just "close enough".
+//
+// We need to use keys here sparingly, because when this gets used, it is
+// typical that whenever this gets used, for every key in here there will be a
+// chunk of CSS generated.
 $vertical-gap-values: (
   narrow: 2rem,
   wide: rem-calc(map-get($breakpoints, wide-m)/24) + rem-calc(map-get($grid-column-responsive-gutter, wide)),

@@ -1,0 +1,15 @@
+
+// Foundation fix - without this, invisible (inactive) dropdown panes can
+// interfere with scrollbars on the body element.
+
+.dropdown-pane {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+
+  // TODO: do we need spec declarations for tiny / large dropdowns?
+  &.is-open {
+    height: auto;
+    width: $dropdown-width;
+  }
+}

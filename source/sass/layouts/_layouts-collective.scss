@@ -33,7 +33,7 @@
 
 
 // #############################################################################
-// Box arrangements.
+// Boxes at specific locations.
 
 .column {
   .box + .box {
@@ -41,3 +41,14 @@
   }
 }
 
+.column--sidebar {
+  .box {
+    &,
+    & p {
+      line-height: $line-height-condensed;
+    }
+  }
+  .box__content {
+    @include line-height-fit($line-height-condensed, bottom);
+  }
+}
