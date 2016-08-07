@@ -3,10 +3,11 @@
  * Styleguide helpers.
  */
 
+
 // ############################################################################
 // Styles for component-demo items' template.
 
-.x-cd-item {
+.appmeta__cd-item {
   @include vertical-gap($implemented_as: padding, $which: both, $size: 1);
 
   &:first-child {
@@ -16,29 +17,29 @@
   &:nth-child(even) {
     background: whitesmoke;
 
-    .x-cd-item__code pre {
+    .appmeta__cd-item__code pre {
       background: white;
     }
   }
 }
 
-.x-cd-item__title {
+.appmeta__cd-item__title {
   @include line-height-fit($line-height: $header-lineheight, $pos: top, $correction: 1);
 }
 
-.x-cd-item__content {
+.appmeta__cd-item__content {
   .cd-item-content-extra-room & {
     margin: 5rem 0;
   }
 }
 
-.x-cd-item__description {
+.appmeta__cd-item__description {
   .element__content {
     @include description-appearance;
   }
 }
 
-.x-cd-item {
+.appmeta__cd-item {
   .element__label {
     display: block;
     margin: 1rem 0;
@@ -47,7 +48,7 @@
   }
 }
 
-.x-cd-item__code {
+.appmeta__cd-item__code {
   pre {
     background: whitesmoke;
     padding: 2rem;
@@ -64,11 +65,7 @@
 // #############################################################################
 // Grid-demos.
 
-// (These rules don't establish grids, don't even modify them, they just make
-// items more visually identifiable; like the grid-demos part is a component on
-// the page.)
-
-.grid-demos {
+.appmeta__grid-demos {
   @include fit-content;
 
   .row + .row {
@@ -84,7 +81,7 @@
   .box {
     background: color(blockfill);
 
-    .x-cd-item:nth-child(even) & {
+    .appmeta__cd-item:nth-child(even) & {
       background: white;
     }
 
