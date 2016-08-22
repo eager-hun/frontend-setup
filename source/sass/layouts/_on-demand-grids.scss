@@ -7,6 +7,20 @@
 // #############################################################################
 // Mixins.
 
+@mixin on-demand-grid-2-col {
+  & > .column {
+    @include grid-column($grid-column-count/2);
+
+    &:nth-child(2n+3) {
+      clear: left;
+    }
+
+    &:nth-child(-n+2) {
+      margin-top: 0;
+    }
+  }
+}
+
 @mixin on-demand-grid-3-col {
   & > .column {
     @include grid-column($grid-column-count/3);
@@ -45,6 +59,15 @@
   }
 }
 
+
+// #############################################################################
+// 3 column grid.
+
+.row--wrap--2 {
+  @include breakpoint(wide) {
+    @include on-demand-grid-2-col;
+  }
+}
 
 // #############################################################################
 // 3 column grid.
