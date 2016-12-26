@@ -4,6 +4,8 @@ Keywords: Foundation, Gulp, Browsersync.
 
 **Note:**
 
+**This project is deprecated, no further development should be expected.**
+
 This project has been made a submodule of the "[anypage][anypage]" project, and
 it is now expected that this project is accessed via "anypage" as a wrapper
 around it.
